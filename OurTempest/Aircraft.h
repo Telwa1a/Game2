@@ -4,6 +4,8 @@
 #include <QtWidgets/QApplication>
 #include <QGraphicsRectItem>
 
+/*BASKLASS till player och enemy. för att båda kommer vara QGRaphicsRectItem*/
+
 
 class Aircraft : public QGraphicsRectItem
 {

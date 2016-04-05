@@ -1,10 +1,7 @@
 /*#ifndef COURSE_H
 #define COURSE_H
 
-
-
 #include <QGraphicsItem>
-
 
 class Course : public QGraphicsItem
 {
