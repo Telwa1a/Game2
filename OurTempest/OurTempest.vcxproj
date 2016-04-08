@@ -77,7 +77,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Aircraft.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Course.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_Bullet.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ourtempest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -147,6 +149,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </Command>
     </CustomBuild>
+    <CustomBuild Include="Bullet.h" />
     <ClInclude Include="Course.h" />
     <ClInclude Include="GeneratedFiles\ui_ourtempest.h" />
   </ItemGroup>

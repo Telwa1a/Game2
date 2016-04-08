@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "ourtempest.h"
+#include "Bullet.h"
 
 //#include <QDebug>
 Player::Player()
@@ -42,6 +43,14 @@ void Player::keyPressEvent(QKeyEvent * e)
 	else if (e->key() == Qt::Key_S)
 	{
 		setPos(x(), y() + 10);
+	}
+	else if (e->key() == Qt::Key_Space)
+	{
+		//Skapar en bullet
+		Bullet * bullet = new Bullet();
+		//qDebug() << "Player knows that you wants to kill";
+		bullet->setPos(x(), y() + 10);
+		scene()->addItem(bullet);
 	}
 }
 

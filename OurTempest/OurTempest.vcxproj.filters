@@ -59,6 +59,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Bullet.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ourtempest.h">
@@ -74,6 +80,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Player.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Bullet.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
