@@ -3,8 +3,9 @@
 
 #include "Aircraft.h"
 #include <QGraphicsItem>
+#include <QKeyEvent>
 
-class Player : public Aircraft //, QGraphicsItem
+class Player : public Aircraft //,QGraphicsItem
 {
 	//Q_OBJECT
 public:
@@ -15,7 +16,7 @@ public:
 	//void paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
 	//void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
-	//void keyPressEvent(QKeyEvent *e);
+	void keyPressEvent(QKeyEvent *e);
 
 private:
 	//Player *_player1;

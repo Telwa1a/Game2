@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QGraphicsRectItem>
+//#include "Player.h"
 
 /*BASKLASS till player och enemy. för att båda kommer vara QGRaphicsRectItem*/
 

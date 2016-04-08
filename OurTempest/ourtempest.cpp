@@ -1,12 +1,22 @@
 #include "ourtempest.h"
 #include <QColor>
 
+
 OurTempest::OurTempest()
 
 {
 	//Skapar en scen och sätter storleken
 	QGraphicsScene *scene = new QGraphicsScene();
 	scene->setSceneRect(0, 0, 600, 450);
+
+	//Lägger till playern i scenen
+	Player *_player = new Player();
+	scene->addItem(_player);
+
+	//Gör playern "focusable"
+	_player->setFlag(QGraphicsItem::ItemIsFocusable);
+	_player->setFocus();
+
 
 	//Skapar en view och storleken på den samt sätter scenen till viewn
 	QGraphicsView *view = new QGraphicsView(scene);
@@ -16,14 +26,11 @@ OurTempest::OurTempest()
 	view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	//Lägger till playern i scenen
-	Player *_player = new Player();
-	scene->addItem(_player);
 	
 
 
-	//TODO: flytta detta till courseklassen. så att det funkar som PLayerklassen.
-	scene->addLine(150, 30, 350, 30);
+	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
+	/*scene->addLine(150, 30, 350, 30);
 	scene->addLine(150, 400, 350, 400);
 	scene->addLine(150, 30, 150, 150);
 	scene->addLine(350, 30, 350, 150);
@@ -38,7 +45,7 @@ OurTempest::OurTempest()
 	scene->addLine(350, 290, 490, 290);
 
 	scene->addLine(490, 150, 490, 290);
-	scene->addLine(10, 150, 10, 290);
+	scene->addLine(10, 150, 10, 290);*/
 
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/

@@ -1,5 +1,7 @@
 #include "Player.h"
+#include "ourtempest.h"
 
+//#include <QDebug>
 Player::Player()
 {
 
@@ -16,50 +18,32 @@ setRect(200, 350, 100, 100);
 }
 */
 
-//TODO: make Player focusable
-/*
-void Player::keyPressEvent(QKeyEvent * e)
-{
-if (e->key() = Qt::Key_A)
-{
-setPos(x() - 10, y());
-}
-
-
-}
-
-void Player::keyPressEvent(QKeyEvent * e)
-{
-if (e->key() = Qt::Key_D)
-{
-setPos(x() + 10, y());
-}
-
-
-}
 
 
 void Player::keyPressEvent(QKeyEvent * e)
 {
-if (e->key() = Qt::Key_W)
-{
-setPos(x(), y()+10);
+	//qDebug() << "Player knows that you pressed a key";
+
+	if (e->key() == Qt::Key_A)
+	{
+		setPos(x() - 10, y());
+	}
+
+	else if (e->key() == Qt::Key_D)
+	{
+		setPos(x() + 10, y());
+	}
+
+	else if (e->key() == Qt::Key_W)
+	{
+		setPos(x(), y() - 10);
+	}
+
+	else if (e->key() == Qt::Key_S)
+	{
+		setPos(x(), y() + 10);
+	}
 }
-
-
-}
-
-void Player::keyPressEvent(QKeyEvent * e)
-{
-if (e->key() = Qt::Key_S)
-{
-setPos(x(), y() - 10);
-}
-
-
-}
-*/
-
 
 Player::~Player()
 {
