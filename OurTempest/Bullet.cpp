@@ -2,7 +2,8 @@
 #include <QTimer>
 
 Bullet::Bullet()
-{	//ritade bullet
+{	
+	//ritade bullet
 	setRect(200, 350, 10, 30);
 
 	//connect
@@ -13,6 +14,7 @@ Bullet::Bullet()
 	timer->start(50);
 
 }
+
 Bullet::~Bullet()
 {
 }

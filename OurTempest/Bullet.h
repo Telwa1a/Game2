@@ -8,16 +8,15 @@
 
 
 
-class Bullet :
-	public QObject, public Aircraft
+class Bullet : public QObject, public Aircraft
 {
-	Q_OBJECT
-public:
-	Bullet();
-	~Bullet();
+		Q_OBJECT
+	public:
+		Bullet();
+		~Bullet();
 
-public slots:
-	void move();
+	//public slots:
+		//void move();
 };
 
-#endif // BULLET_H
+#endif //BULLET_H
