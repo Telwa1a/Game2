@@ -2,15 +2,13 @@
 #define BULLET_H
 
 #pragma once
-
-#include "Aircraft.h"
+#include "MovingGameObj.h"
 #include <QObject>
 
-
-
-class Bullet : public QObject, public Aircraft
+class Bullet : public QObject, public MovingGameObj
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
 		Bullet();
 		~Bullet();

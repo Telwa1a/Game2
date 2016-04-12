@@ -1,12 +1,11 @@
-#include "ourtempest.h"
+#include "Game.h"
 #include <QtWidgets/QApplication>
 //#include "DrawWindow.h"
-
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	OurTempest w;
+	Game w;
 	//w.show();
 	return a.exec();
 }

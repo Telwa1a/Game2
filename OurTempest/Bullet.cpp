@@ -4,7 +4,7 @@
 Bullet::Bullet()
 {	
 	//ritade bullet
-	setRect(200, 350, 10, 30);
+	//setRect(200, 350, 10, 30);
 
 	//connect
 
@@ -12,7 +12,6 @@ Bullet::Bullet()
 	connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 
 	timer->start(50);
-
 }
 
 Bullet::~Bullet()
