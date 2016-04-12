@@ -1,13 +1,11 @@
 #include "Player.h"
-#include "ourtempest.h"
+#include "MovingGameObj.h"
 #include "Bullet.h"
 
 //#include <QDebug>
-Player::Player()
+Player::Player() : MovingGameObj()
 {
-
-setRect(200, 350, 100, 100);
-
+	setRect(200, 350, 100, 100);
 }
 
 //TODO::Paint player just for fun
@@ -19,8 +17,6 @@ setRect(200, 350, 100, 100);
 }
 */
 
-
-
 void Player::keyPressEvent(QKeyEvent * e)
 {
 	//qDebug() << "Player knows that you pressed a key";
@@ -30,27 +26,28 @@ void Player::keyPressEvent(QKeyEvent * e)
 		setPos(x() - 10, y());
 	}
 
-	else if (e->key() == Qt::Key_D)
+	if (e->key() == Qt::Key_D)
 	{
 		setPos(x() + 10, y());
 	}
 
-	else if (e->key() == Qt::Key_W)
+	if (e->key() == Qt::Key_W)
 	{
 		setPos(x(), y() - 10);
 	}
 
-	else if (e->key() == Qt::Key_S)
+	if (e->key() == Qt::Key_S)
 	{
 		setPos(x(), y() + 10);
 	}
-	else if (e->key() == Qt::Key_Space)
+
+	if (e->key() == Qt::Key_Space)
 	{
 		//Skapar en bullet
 		Bullet * bullet = new Bullet();
 		//qDebug() << "Player knows that you wants to kill";
 		bullet->setPos(x(), y() + 10);
-		scene()->addItem(bullet);
+		//scene()->addItem(bullet);
 	}
 }
 
