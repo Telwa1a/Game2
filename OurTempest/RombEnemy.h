@@ -11,9 +11,9 @@ public:
 
 
 private:
-	int _xPos = 100;
-	int _yPos = 100;
-	int _width = 10;
-	int _hight = 10;
+	float _xPos = 200;
+	float _yPos = 0; 
+	float _width = 50;
+	float _hight = 50;
 };
 

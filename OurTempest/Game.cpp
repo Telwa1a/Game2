@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <QColor>
-
+#include <QTimer>
 Game::Game()
 {
 	//Skapar en scen och sätter storleken
@@ -11,6 +11,10 @@ Game::Game()
 	Player *_player = new Player();
 	scene->addItem(_player);
 
+	//Lägger till RombEnemy i scenen
+	RombEnemy *_romb = new RombEnemy();
+	scene->addItem(_romb);
+
 	//Gör playern "focusable"
 	_player->setFlag(QGraphicsItem::ItemIsFocusable);
 	_player->setFocus();
@@ -18,10 +22,23 @@ Game::Game()
 	//Skapar en view och storleken på den samt sätter scenen till viewn
 	QGraphicsView *view = new QGraphicsView(scene);
 	view->setFixedSize(900, 900);
+	//view->setViewportUpdateMode(QGraphicsView::inter);
+	
 
 	//Tar bort scrollbarsen
 	view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+
+
+
+
+	/*QTimer * timer = new QTimer();
+	connect(timer, SIGNAL(timeout()), this, SLOT(enemyMoves()));
+	timer->start(50);*/
+
+
+	
 
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);

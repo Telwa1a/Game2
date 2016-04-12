@@ -1,24 +1,26 @@
 #pragma once
 #include <QObject>
+#include "MovingGameObj.h"
 
-class Enemy : public QObject //:public MovingGameObject
+class Enemy : public QObject ,public MovingGameObj
 {
 	Q_OBJECT
 public:
 	Enemy();
-	Enemy(RombEnemy * rombEnemy);
 	~Enemy();
 	 
 protected:
-	void makeEnemyBigger();
+
 
 private slots:
 	void enemyMoves();
+	void makeEnemyBigger();
 
 private:
-	int _xPos = 100;
-	int _yPos = 100;
-	int _width = 10;
-	int _hight = 10;
+	float _scale = 0;
+	float _xPos = 100;
+	float _yPos = 100;
+	float _width = 10;
+	float _height = 10;
 };
 

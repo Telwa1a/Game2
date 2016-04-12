@@ -10,6 +10,7 @@
 //#include "ui_ourtempest.h"
 #include "Player.h"
 #include "Course.h"
+#include "RombEnemy.h"
 
 class Game : public QMainWindow
 {
@@ -21,7 +22,8 @@ class Game : public QMainWindow
 
 	private:
 		//Ui::OurTempestClass ui;
-		Player *_player;
+		//Player *_player;
+		//RombEnemy *_rombEnemy;
 		//Course *_course;
 };
 
