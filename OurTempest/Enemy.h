@@ -15,7 +15,7 @@ protected:
 private slots:
 	void enemyMoves();
 	void makeEnemyBigger();
-
+	void spawnEnemies();
 private:
 	float _scale = 0;
 	float _xPos = 100;

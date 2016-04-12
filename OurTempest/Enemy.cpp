@@ -1,10 +1,16 @@
 #include "Enemy.h"
 #include "RombEnemy.h"
+#include "Game.h"
 #include <QTimer>
+#include <stdlib.h>
 
 
 Enemy::Enemy() : MovingGameObj()
 {
+	// set random position
+	int random_number = rand() % 700;
+	setPos(random_number, 0);
+
 	_width = 10;
 	_height = 10;
 
@@ -13,15 +19,15 @@ Enemy::Enemy() : MovingGameObj()
 	setRect(0, 0, _width, _height);
 	
 	
-	QTimer * timer = new QTimer();
-	connect(timer, SIGNAL(timeout()), this, SLOT(enemyMoves()));
-	timer->start(50);
+	QTimer * timerMove = new QTimer();
+	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
+	timerMove->start(50);
 
 
 
-	QTimer * timer2 = new QTimer();
-	connect(timer2, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
-	timer2->start(50);
+	QTimer * timerScale = new QTimer();
+	connect(timerScale, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
+	timerScale->start(50);
 
 }
 
@@ -46,6 +52,12 @@ void Enemy::makeEnemyBigger()
 
 void Enemy::enemyMoves()
 {
-	setPos(x(), y() + 5); //Denna får vi från MovingGameObject
+	setPos(x(), y() + 5); 
 }
 
+void Enemy::spawnEnemies()
+{
+	//skapa en fiende
+	RombEnemy * rombenemy = new RombEnemy();
+	scene()->addItem(rombenemy);
+}

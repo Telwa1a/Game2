@@ -15,6 +15,11 @@ Game::Game()
 	RombEnemy *_romb = new RombEnemy();
 	scene->addItem(_romb);
 
+	QTimer * timer = new QTimer();
+	QObject::connect(timer, SIGNAL(timeout()), this, SLOT(spawn()));
+	timer->start(2);
+
+
 	//Gör playern "focusable"
 	_player->setFlag(QGraphicsItem::ItemIsFocusable);
 	_player->setFocus();
