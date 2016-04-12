@@ -18,3 +18,9 @@ Bullet::Bullet()
 Bullet::~Bullet()
 {
 }
+
+
+void Bullet::move()
+{
+	setPos(x(), y() - 10);
+}

@@ -1,6 +1,6 @@
 #include "ourtempest.h"
 #include <QtWidgets/QApplication>
-#include "DrawWindow.h"
+//#include "DrawWindow.h"
 
 
 int main(int argc, char *argv[])

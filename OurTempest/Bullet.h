@@ -15,8 +15,8 @@ class Bullet : public QObject, public Aircraft
 		Bullet();
 		~Bullet();
 
-	//public slots:
-		//void move();
+	public slots:
+		void move();
 };
 
 #endif //BULLET_H
