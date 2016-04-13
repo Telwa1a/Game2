@@ -1,6 +1,7 @@
 #include "Bullet.h"
 #include "Game.h"
 #include <QTimer>
+#include <QDebug>
 
 Bullet::Bullet()
 {	
@@ -38,6 +39,12 @@ void Bullet::move()
 
 		}
 	}
-
+	if (pos().y() + rect().height() < -600)
+	{
+		scene()->removeItem(this);
+		delete this;
+		//qDebug() << "Bullet deleted.";
+		return;
+	}
 	setPos(x(), y() - 10);
 }
