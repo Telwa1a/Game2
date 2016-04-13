@@ -8,15 +8,20 @@
 
 class GameObj : public QGraphicsRectItem
 {
+	protected:
+		struct Vector2
+		{
+			float x;
+			float y;
+		};
+		Vector2 position;
+		Vector2 size;
+
 	public:
 		GameObj();
 		GameObj(const float xpos, const float ypos, const float width, const float height);
+		GameObj(const Vector2 _pos, const Vector2 _size);
 		~GameObj();
-
-	protected:
-		float xPos;
-		float yPos;
-		struct Vector2;
 };
 
 #endif // GAMEOBJ_H

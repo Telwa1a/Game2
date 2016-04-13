@@ -2,22 +2,34 @@
 
 GameObj::GameObj()
 {
-	setRect(0, 0, 0, 0);
-	setPos(0, 0);
+	position.x = 0;
+	position.y = 0;
+	size.x = 0;
+	size.y = 0;
+	setRect(position.x, position.y, size.x, size.y);
+	setPos(position.x, position.y);
 }
 
 GameObj::GameObj(const float xpos, const float ypos, const float width, const float height)
 {
-	setPos(xpos, ypos);
-	setRect(xpos, ypos, width, height);
+	position.x = xpos;
+	position.y = ypos;
+	size.x = width;
+	size.y = height;
+	setPos(position.x, position.y);
+	setRect(position.x, position.y, size.x, size.y);
+}
+
+GameObj::GameObj(const Vector2 _position, const Vector2 _size)
+{
+	position = _position;
+	size = _size;
+	setPos(position.x, position.y);
+	setRect(position.x, position.y, size.x, size.y);
 }
 
 GameObj::~GameObj()
 {
 }
 
-struct Vector2
-{
-	float x;
-	float y;
-};
+
