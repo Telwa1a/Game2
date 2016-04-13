@@ -12,6 +12,8 @@ Game::Game()
 	Player *_player = new Player();
 	scene->addItem(_player);
 
+	
+
 	//Lägger till RombEnemy i scenen
 	RombEnemy *_romb = new RombEnemy();
 	scene->addItem(_romb);

@@ -1,8 +1,9 @@
 #include "Player.h"
 #include "MovingGameObj.h"
 #include "Bullet.h"
+#include "Game.h"
 
-//#include <QDebug>
+#include <QDebug>
 Player::Player() : MovingGameObj()
 {
 	setRect(200, 350, 100, 100);
@@ -47,7 +48,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 		Bullet * bullet = new Bullet();
 		//qDebug() << "Player knows you want to kill";
 		bullet->setPos(x(), y() + 10);
-		//scene()->addItem(bullet);
+		scene()->addItem(bullet);
 	}
 }
 

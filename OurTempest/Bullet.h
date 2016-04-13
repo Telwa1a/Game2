@@ -3,6 +3,10 @@
 
 #pragma once
 #include "MovingGameObj.h"
+#include "Enemy.h"
+#include "RombEnemy.h"
+#include "Game.h"
+#include <QList>
 #include <QObject>
 
 class Bullet : public QObject, public MovingGameObj
