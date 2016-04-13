@@ -3,6 +3,7 @@
 
 RombEnemy::RombEnemy()
 {
+
 	//TODO: make enemy in the shape of a romb
 	setRect(_xPos, _yPos, _width, _hight); 
 
@@ -15,3 +16,4 @@ RombEnemy::RombEnemy()
 RombEnemy::~RombEnemy()
 {
 }
+

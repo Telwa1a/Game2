@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Enemy.h"
 #include <QColor>
 #include <QTimer>
 Game::Game()
@@ -16,8 +17,8 @@ Game::Game()
 	scene->addItem(_romb);
 
 	QTimer * timer = new QTimer();
-	QObject::connect(timer, SIGNAL(timeout()), this, SLOT(spawn()));
-	timer->start(2);
+	QObject::connect(timer, SIGNAL(timeout()), _romb, SLOT(spawnEnemies()));
+	timer->start(2000);
 
 
 	//Gör playern "focusable"

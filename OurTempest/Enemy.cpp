@@ -8,15 +8,15 @@
 Enemy::Enemy() : MovingGameObj()
 {
 	// set random position
-	int random_number = rand() % 700;
-	setPos(random_number, 0);
+	int randomNumber = rand() % 400;
+	setPos(randomNumber, 0);
 
 	_width = 10;
 	_height = 10;
 
 	setScale(_scale);
 
-	setRect(0, 0, _width, _height);
+	setRect(randomNumber, 0, _width, _height);
 	
 	
 	QTimer * timerMove = new QTimer();
@@ -52,7 +52,7 @@ void Enemy::makeEnemyBigger()
 
 void Enemy::enemyMoves()
 {
-	setPos(x(), y() + 5); 
+	setPos(x(), y() + 5);
 }
 
 void Enemy::spawnEnemies()
