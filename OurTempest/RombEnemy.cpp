@@ -1,15 +1,27 @@
 #include "RombEnemy.h"
+#include <qdebug.h>
 
 
 RombEnemy::RombEnemy()
 {
+	//Set values for player variables
+	velocity.x = 0;
+	velocity.y = 5; //5 in speed
+	velocityMax.x = 10;
+	velocityMax.y = 10;
+	direction.x = 0;
+	direction.y = 1; //Go downwards
+	size.x = 50;
+	size.y = 50;
+	//qDebug() << pos();
+	//qDebug() << scenePos();
 
 	//TODO: make enemy in the shape of a romb
-	setRect(_xPos, _yPos, _width, _hight); 
+	setRect(position.x, position.y, size.x, size.y); 
 
 	// Gör att fienden inte "driftar åt sidan utan förblir stationär när den skalas upp
-	setPos(_xPos, _yPos);
-	setTransformOriginPoint(_xPos, _yPos);
+	setPos(position.x, position.y);
+	setTransformOriginPoint(position.x + (size.x / 2), position.y + (size.y / 2));
 }
 
 

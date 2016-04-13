@@ -9,50 +9,59 @@ Enemy::Enemy() : MovingGameObj()
 {
 	// set random position
 	int randomNumber = rand() % 400;
-	setPos(randomNumber, 0);
+	position.x = randomNumber;
+	position.y = 0;
+	setPos(position.x, position.y);
 
-	_width = 10;
-	_height = 10;
+	//Set values for player variables
+	size.x = 10;
+	size.y = 10;
+	scale = 0;
+	/*velocity.x = 0;
+	velocity.y = 0; //5 in speed
+	velocityMax.x = 10;
+	velocityMax.y = 10;
+	direction.x = 0;
+	direction.y = 1; //Go downwards*/
 
-	setScale(_scale);
+	//Set player scale
+	setScale(scale);
 
-	setRect(randomNumber, 0, _width, _height);
-	
+	//Set player rect
+	setRect(position.x, position.y, size.x, size.y);
 	
 	QTimer * timerMove = new QTimer();
 	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
 	timerMove->start(50);
 
-
-
 	QTimer * timerScale = new QTimer();
 	connect(timerScale, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
 	timerScale->start(50);
-
 }
 
 Enemy::~Enemy()
 {
 }
 
-
 void Enemy::makeEnemyBigger()
 {
-	float currentScale = scale();
+	float currentScale = scale;
 
 	if (currentScale >= 1)
 		return;
 	
-	_scale = _scale + 0.01f;
+	scale = scale + 0.05f;
 
-	setScale(_scale);
+	setScale(scale);
 
 	//update();
 }
 
 void Enemy::enemyMoves()
 {
-	setPos(x(), y() + 5);
+	//setPos(x(), y() + 5);
+	updateVelocity();
+	setPos(position.x, position.y);
 }
 
 void Enemy::spawnEnemies()

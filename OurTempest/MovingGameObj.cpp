@@ -123,3 +123,15 @@ MovingGameObj::MovingGameObj(const Vector2 _direction, const Vector2 _velocity, 
 MovingGameObj::~MovingGameObj()
 {
 }
+
+void MovingGameObj::updateVelocity()
+{
+	if (velocity.x > velocityMax.x)
+		velocity.x = velocityMax.x;
+
+	if (velocity.y > velocityMax.y)
+		velocity.y = velocityMax.y;
+
+	position.x += (velocity.x * direction.x);
+	position.y += (velocity.y * direction.y);
+}
