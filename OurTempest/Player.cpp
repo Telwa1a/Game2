@@ -45,7 +45,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 	{
 		//Skapar en bullet
 		Bullet * bullet = new Bullet();
-		//qDebug() << "Player knows that you wants to kill";
+		//qDebug() << "Player knows you want to kill";
 		bullet->setPos(x(), y() + 10);
 		//scene()->addItem(bullet);
 	}

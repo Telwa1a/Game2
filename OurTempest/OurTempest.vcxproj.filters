@@ -59,11 +59,20 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Game.cpp">
-      <Filter>Generated Files\Debug</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_Game.cpp">
-      <Filter>Generated Files\Release</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlitchoEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexEnemy.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
       <Filter>Source Files</Filter>
@@ -71,22 +80,25 @@
     <ClCompile Include="LLCR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MovingGameObj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HexEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ParaEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GlitchoEnemy.cpp">
+    <ClCompile Include="Settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Enemy.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Enemy.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RombEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -106,6 +118,9 @@
     <CustomBuild Include="Game.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ourtempest.h">
@@ -114,28 +129,31 @@
     <ClInclude Include="Course.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlitchoEnemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexEnemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="HUD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LLCR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MovingGameObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HexEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ParaEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlitchoEnemy.h">
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RombEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
