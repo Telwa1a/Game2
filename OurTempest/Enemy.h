@@ -8,6 +8,8 @@ class Enemy : public QObject ,public MovingGameObj
 public:
 	Enemy();
 	~Enemy();
+
+	void update();
 	 
 protected:
 

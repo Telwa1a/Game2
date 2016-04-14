@@ -12,7 +12,6 @@ Bullet::Bullet()
 
 	QTimer * timer = new QTimer();
 	connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-
 	timer->start(50);
 }
 

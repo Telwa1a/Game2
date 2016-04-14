@@ -6,6 +6,7 @@
 #include <QtWidgets/QApplication>
 #include <QGraphicsScene>
 #include <QgraphicsView>
+#include <vector>
 
 //#include "ui_ourtempest.h"
 #include "Player.h"
@@ -19,12 +20,18 @@ class Game : public QMainWindow
 	public:
 		Game();
 		~Game();
+		void update();
+
+	private slots:
+		void spawnEnemies(GameObj *);
 
 	private:
 		//Ui::OurTempestClass ui;
 		//Player *_player;
-		//RombEnemy *_rombEnemy;
+		RombEnemy *_rombEnemy;
 		//Course *_course;
+		QGraphicsScene * _scene;
+		std::vector<GameObj *> _gameObjVector;
 };
 
 #endif //GAME_H

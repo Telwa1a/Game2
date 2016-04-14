@@ -18,17 +18,20 @@ Enemy::Enemy() : MovingGameObj()
 
 	setRect(randomNumber, 0, _width, _height);
 	
-	
-	QTimer * timerMove = new QTimer();
-	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
-	timerMove->start(50);
 
 
 
 	QTimer * timerScale = new QTimer();
+	connect(timerScale, SIGNAL(timeout()), this, SLOT(update()));
+	timerScale->start(50);
+	
+	/*QTimer * timerScale = new QTimer();
 	connect(timerScale, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
 	timerScale->start(50);
 
+	QTimer * timerMove = new QTimer();
+	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
+	timerMove->start(50);*/
 }
 
 Enemy::~Enemy()
@@ -46,18 +49,16 @@ void Enemy::makeEnemyBigger()
 	_scale = _scale + 0.01f;
 
 	setScale(_scale);
-
-	//update();
 }
+
 
 void Enemy::enemyMoves()
 {
 	setPos(x(), y() + 5);
 }
 
-void Enemy::spawnEnemies()
+void Enemy::update()
 {
-	//skapa en fiende
-	RombEnemy * rombenemy = new RombEnemy();
-	scene()->addItem(rombenemy);
+	makeEnemyBigger();
+	enemyMoves();
 }
