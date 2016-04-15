@@ -9,8 +9,9 @@ Player::Player() : MovingGameObj()
 	//gra
 	//QKeyEvent::isAutoRepeat = false;
 	updateTimer = new QTimer;
-	//updateTimer->setTimerType(Qt::PreciseTimer);
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(playerUpdate()));
+	//setCacheMode(QGraphicsItem::DeviceCoordinateCache);
+	//updateTimer->setTimerType(Qt::PreciseTimer);
 	//timer->start(_gameUpdateInterval * 1000); //ms
 	//updateTimer->start(1000 / 60); //ms
 
@@ -71,7 +72,8 @@ void Player::keyPressEvent(QKeyEvent * e)
 {
 	if (controlsAllowed)
 	{
-		grabKeyboard();
+		//if (!hasFocus())
+			//grabKeyboard();
 
 		pressedKeys += ((QKeyEvent*)e)->key();
 
@@ -125,7 +127,8 @@ void Player::keyPressEvent(QKeyEvent * e)
 
 void Player::keyReleaseEvent(QKeyEvent * e)
 {
-	grabKeyboard();
+	//if (!hasFocus())
+		//grabKeyboard();
 
 	pressedKeys -= ((QKeyEvent*)e)->key();
 
@@ -223,5 +226,5 @@ Player::~Player()
 void Player::playerUpdate()
 {
 	updateVelocity();
-	setPos(position.x, position.y);
+	setPos(position.x, position.y);	
 }

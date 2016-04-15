@@ -42,7 +42,7 @@ Game::Game()
 	//QGraphicsView *view = new QGraphicsView(&scene);
 	view.setScene(&scene);
 	view.setFixedSize(900, 900);
-	//view->setViewportUpdateMode(QGraphicsView::inter);
+	view.setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
 	//Tar bort scrollbarsen
 	view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -89,7 +89,7 @@ Game::Game()
 
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
-	
+	//view.setOptimizationFlag(QGraphicsView::IndirectPainting);
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
@@ -131,6 +131,7 @@ void Game::spawnEnemies(int enemyNumber)
 
 void Game::updateGame()
 {
+	//QScreen
 	//player->playerUpdate(QKeyEvent e*);
 
 	/*double frameTime = _frameTime->elapsed();
@@ -148,4 +149,9 @@ void Game::updateGame()
 	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
 
 	for (int i = 0; i <= _rombVector.size(); i++){}
+
+	if (!player->hasFocus())
+		player->setFocus();
+		//grabKeyboard();
+	//update();
 }
