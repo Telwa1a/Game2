@@ -18,12 +18,8 @@ Game::Game()
 
 	//Lägger till RombEnemy i scenen
 	//RombEnemy *_romb = new RombEnemy();
-	//ombenemy = new RombEnemy();
-	//scene.addItem(rombenemy);
-
-	QTimer * timer = new QTimer();
-	QObject::connect(timer, SIGNAL(timeout()), rombenemy, SLOT(spawnEnemies()));
-	timer->start(2000);
+	//rombEnemy = new RombEnemy();
+	//scene.addItem(rombEnemy);
 
 	//Gör playern "focusable"
 	//clearFocus();
@@ -55,18 +51,23 @@ Game::Game()
 	/*QTimer * timer = new QTimer();
 	connect(timer, SIGNAL(timeout()), this, SLOT(enemyMoves()));
 	timer->start(50);*/
+	signalMapper = new QSignalMapper(this);
 
 	//Game update interval
-	QTimer * updateTimer = new QTimer;
+	updateTimer = new QTimer;
 	updateTimer->setTimerType(Qt::PreciseTimer);
-	connect(updateTimer, SIGNAL(timeout()), this, SLOT(update()));
+	connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateGame()));
 	//timer->start(_gameUpdateInterval * 1000); //ms
 	updateTimer->start(1000 / 60); //ms
 
 	//Spawnar enemies
-	QTimer * timer = new QTimer();
-	QObject::connect(timer, SIGNAL(timeout()), this, SLOT(spawnEnemies(1)));
-	timer->start(2000);
+	enemySpawnTimer = new QTimer();
+	connect(enemySpawnTimer, SIGNAL(timeout()), signalMapper, SLOT(map()));
+	signalMapper->setMapping(enemySpawnTimer, 1);
+	connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(spawnEnemies(int)));
+	//connect(action1, SIGNAL(triggered()), signalMapper, SLOT(map()));
+	//QObject::connect(enemySpawnTimer, SIGNAL(timeout()), this, SLOT(spawnEnemies()));
+	enemySpawnTimer->start(2000);
 
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);
@@ -120,15 +121,15 @@ void Game::spawnEnemies(int enemyNumber)
 	if (enemyNumber == 1)
 	{
 		//Lägger till fiende i scenen.
-		RombEnemy * _rombEnemy = new RombEnemy();
-		_scene->addItem(_rombEnemy);
+		rombEnemy = new RombEnemy();
+		scene.addItem(rombEnemy);
 
 		//Lägger till fiende i vectorn.
-		_rombVector.push_back(_rombEnemy);
+		_rombVector.push_back(rombEnemy);
 	}
 }
 
-void Game::update()
+void Game::updateGame()
 {
 	//player->playerUpdate(QKeyEvent e*);
 
@@ -147,5 +148,4 @@ void Game::update()
 	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
 
 	for (int i = 0; i <= _rombVector.size(); i++){}
-
 }

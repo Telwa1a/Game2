@@ -13,6 +13,7 @@
 #include "Course.h"
 #include "RombEnemy.h"
 #include <QGraphicsScene>
+#include <QSignalMapper>
 
 class Game : public QMainWindow
 {
@@ -20,9 +21,6 @@ class Game : public QMainWindow
 	public:
 		Game();
 		~Game();
-
-	private slots:
-		void spawnEnemies(int enemyNumber);
 
 	private:
 		//Ui::OurTempestClass ui;
@@ -34,7 +32,10 @@ class Game : public QMainWindow
 		QGraphicsView view;
 		//PhysicsSystem _physicsSystem;
 		Player *player;
-		//RombEnemy *rombenemy;
+		RombEnemy *rombEnemy;
+		QTimer *updateTimer;
+		QTimer *enemySpawnTimer;
+		QSignalMapper *signalMapper;
 		//const float _physicsUpdateInterval; //seconds / update
 		//const float _gameUpdateInterval; //seconds / update
 		//long double _accumulator;
@@ -50,7 +51,8 @@ class Game : public QMainWindow
 		};
 
 	private slots:
-		void update();
+		void spawnEnemies(int enemyNumber);
+		void updateGame();
 		//void updateFrameTime();
 };
 
