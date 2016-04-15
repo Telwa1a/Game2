@@ -24,5 +24,5 @@ class GameObj : public QGraphicsRectItem
 		~GameObj();
 };
 
-#endif // GAMEOBJ_H
+#endif //GAMEOBJ_H
 

@@ -5,9 +5,25 @@
 //#include <QDebug>
 Player::Player() : MovingGameObj()
 {
+	//gra
+	//QKeyEvent::isAutoRepeat = false;
+	updateTimer = new QTimer;
+	//updateTimer->setTimerType(Qt::PreciseTimer);
+	connect(updateTimer, SIGNAL(timeout()), this, SLOT(playerUpdate()));
+	//timer->start(_gameUpdateInterval * 1000); //ms
+	//updateTimer->start(1000 / 60); //ms
+
+	/*QTimer * timerKeyPress = new QTimer();
+	connect(timerKeyPress, SIGNAL(timeout()), this, SLOT(keyPressEvent()));
+	timerKeyPress->start(15);
+
+	QTimer * timerKeyRelease = new QTimer();
+	connect(timerKeyRelease, SIGNAL(timeout()), this, SLOT(keyReleaseEvent()));
+	timerKeyRelease->start(15);*/
+
 	//Set position
-	position.x = 0;
-	position.y = 0;
+	position.x = 100;
+	position.y = 100;
 
 	//Set values for player variables
 	velocity.x = 5;
@@ -24,6 +40,7 @@ Player::Player() : MovingGameObj()
 	//setRect(250, 350, 100, 100);
 	//TODO: make enemy in the shape of a romb
 	setRect(position.x, position.y, size.x, size.y);
+	setPos(position.x, position.y);
 
 	// Gör att fienden inte "driftar åt sidan utan förblir stationär när den skalas upp
 	//setPos(250, 350);
@@ -38,37 +55,61 @@ Player::Player() : MovingGameObj()
 }
 */
 
+void Player::mousePressEvent(QMouseEvent *e)
+{
+	//grabMouse();
+	//hasFocus();
+}
+
+void Player::mouseReleaseEvent(QMouseEvent *e)
+{
+	//hasFocus();
+}
+
 void Player::keyPressEvent(QKeyEvent * e)
 {
-	isKeyPressed = true;
+	grabKeyboard();
+
+	pressedKeys += ((QKeyEvent*)e)->key();
+
+	//isKeyPressed = true;
+
+	if (!updateTimer->isActive())
+		updateTimer->start(1000 / 60);
+	//if (updateTimer->)
 	//keys[e->key()] = true; 
 	//QGraphicsRectItem::keyPressEvent(e);
 
 	//qDebug() << "Player knows that you pressed a key";
-	/*direction.x = 0;
-	direction.y = 0;
+	//direction.x = 0;
+	//direction.y = 0;
 
-	if (e->key() == Qt::Key_A)
+	//if (e->key() == Qt::Key_A)
+	if (pressedKeys.contains(Qt::Key_A))
 	{
 		direction.x = -1;
 	}
 
-	else if (e->key() == Qt::Key_D)
+	//if (e->key() == Qt::Key_D)
+	if (pressedKeys.contains(Qt::Key_D))
 	{
 		direction.x = 1;
 	}
 
-	if (e->key() == Qt::Key_W)
+	//if (e->key() == Qt::Key_W)
+	if (pressedKeys.contains(Qt::Key_W))
 	{
 		direction.y = -1;
 	}
 
-	else if (e->key() == Qt::Key_S)
+	//if (e->key() == Qt::Key_S)
+	if (pressedKeys.contains(Qt::Key_S))
 	{
 		direction.y = 1;
 	}
 
-	if (e->key() == Qt::Key_Space)
+	//if (e->key() == Qt::Key_Space)
+	if (pressedKeys.contains(Qt::Key_Space))
 	{
 		//Skapar en bullet
 		Bullet * bullet = new Bullet();
@@ -77,18 +118,32 @@ void Player::keyPressEvent(QKeyEvent * e)
 		//scene()->addItem(bullet);
 	}
 
-	updateVelocity();
-	setPos(position.x, position.y);*/
+	//updateVelocity();
+	//setPos(position.x, position.y);
 }
 
 void Player::keyReleaseEvent(QKeyEvent * e)
 {
-	isKeyPressed = false;
+	grabKeyboard();
+
+	pressedKeys -= ((QKeyEvent*)e)->key();
+
+	//isKeyPressed = false;
 	//keys[e->key()] = false; 
 	//QGraphicsRectItem::keyReleaseEvent(e);
 
-	//direction.x = 0;
-	//direction.y = 0;
+	if (!pressedKeys.contains(Qt::Key_S) && !pressedKeys.contains(Qt::Key_W))
+	{
+		direction.y = 0;
+	}
+
+	if (!pressedKeys.contains(Qt::Key_A) && !pressedKeys.contains(Qt::Key_D))
+	{
+		direction.x = 0;
+	}
+
+	//if (updateTimer->isActive())
+		//updateTimer->stop();
 }
 
 /*void Player::timerEvent(QTimerEvent *)
@@ -121,5 +176,51 @@ void Player::keyReleaseEvent(QKeyEvent * e)
 
 Player::~Player()
 {
+}
 
+/*void Player::playerUpdate(QKeyEvent * e)
+{
+	if (isKeyPressed)
+	{
+		direction.x = 0;
+		direction.y = 0;
+
+		if (e->key() == Qt::Key_A)
+		{
+			direction.x = -1;
+		}
+
+		else if (e->key() == Qt::Key_D)
+		{
+			direction.x = 1;
+		}
+
+		if (e->key() == Qt::Key_W)
+		{
+			direction.y = -1;
+		}
+
+		else if (e->key() == Qt::Key_S)
+		{
+			direction.y = 1;
+		}
+
+		if (e->key() == Qt::Key_Space)
+		{
+			//Skapar en bullet
+			Bullet * bullet = new Bullet();
+			//qDebug() << "Player knows you want to kill";
+			bullet->setPos(x(), y() + 10);
+			//scene()->addItem(bullet);
+		}
+
+		updateVelocity();
+		setPos(position.x, position.y);
+	}
+}*/
+
+void Player::playerUpdate()
+{
+	updateVelocity();
+	setPos(position.x, position.y);
 }

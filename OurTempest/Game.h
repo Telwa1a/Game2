@@ -15,7 +15,6 @@
 class Game : public QMainWindow
 {
 	Q_OBJECT
-
 	public:
 		Game();
 		~Game();
@@ -25,6 +24,28 @@ class Game : public QMainWindow
 		//Player *_player;
 		//RombEnemy *_rombEnemy;
 		//Course *_course;
+		QGraphicsScene scene;
+		QGraphicsView view;
+		//PhysicsSystem _physicsSystem;
+		Player *player;
+		RombEnemy *rombenemy;
+		//const float _physicsUpdateInterval; //seconds / update
+		//const float _gameUpdateInterval; //seconds / update
+		//long double _accumulator;
+		//QTimer *_frameTimer;
+		//QElapsedTimer *_frameTime;
+		//int _fps;
+
+		enum GameState
+		{
+			MainMenuState,
+			IngameState,
+			PauseMenuState
+		};
+
+	private slots:
+		void update();
+		//void updateFrameTime();
 };
 
 #endif //GAME_H

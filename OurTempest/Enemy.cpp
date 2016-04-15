@@ -30,13 +30,13 @@ Enemy::Enemy() : MovingGameObj()
 	//Set player rect
 	setRect(position.x, position.y, size.x, size.y);
 	
-	QTimer * timerMove = new QTimer();
+	timerMove = new QTimer();
 	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
-	timerMove->start(50);
+	timerMove->start(1000/60);
 
-	QTimer * timerScale = new QTimer();
+	timerScale = new QTimer();
 	connect(timerScale, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
-	timerScale->start(50);
+	timerScale->start(1000/60);
 }
 
 Enemy::~Enemy()
@@ -48,7 +48,10 @@ void Enemy::makeEnemyBigger()
 	float currentScale = scale;
 
 	if (currentScale >= 1)
+	{
+		timerScale->stop();
 		return;
+	}
 	
 	scale = scale + 0.05f;
 

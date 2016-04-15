@@ -2,8 +2,8 @@
 #define BULLET_H
 
 #pragma once
-#include "MovingGameObj.h"
 #include <QObject>
+#include "MovingGameObj.h"
 
 class Bullet : public QObject, public MovingGameObj
 {

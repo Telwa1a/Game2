@@ -1,3 +1,6 @@
+#ifndef ENEMY_H
+#define ENEMY_H
+
 #pragma once
 #include <QObject>
 #include "MovingGameObj.h"
@@ -9,9 +12,14 @@ class Enemy : public QObject ,public MovingGameObj
 		Enemy();
 		~Enemy();
 
+	private:
+		QTimer * timerScale;
+		QTimer * timerMove;
+
 	private slots:
 		void enemyMoves();
 		void makeEnemyBigger();
 		void spawnEnemies();
 };
 
+#endif //ENEMY_H

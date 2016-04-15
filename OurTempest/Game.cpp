@@ -4,47 +4,65 @@
 #include <QTimer>
 Game::Game()
 {
+	//Definiera enum
+	GameState state = IngameState;
+
 	//Skapar en scen och sätter storleken
-	QGraphicsScene *scene = new QGraphicsScene();
-	scene->setSceneRect(0, 0, 600, 450);
+	//QGraphicsScene *scene = new QGraphicsScene();
+	scene.setSceneRect(0, 0, 600, 450);
 
 	//Lägger till playern i scenen
-	Player *_player = new Player();
-	scene->addItem(_player);
+	player = new Player();
+
+	//Player * player = new Player();
+	scene.addItem(player);
 
 	//Lägger till RombEnemy i scenen
-	RombEnemy *_romb = new RombEnemy();
-	scene->addItem(_romb);
+	//RombEnemy *_romb = new RombEnemy();
+	rombenemy = new RombEnemy();
+	scene.addItem(rombenemy);
 
 	QTimer * timer = new QTimer();
-	QObject::connect(timer, SIGNAL(timeout()), _romb, SLOT(spawnEnemies()));
+	QObject::connect(timer, SIGNAL(timeout()), rombenemy, SLOT(spawnEnemies()));
 	timer->start(2000);
 
-
 	//Gör playern "focusable"
-	_player->setFlag(QGraphicsItem::ItemIsFocusable);
-	_player->setFocus();
+	//clearFocus();
+	player->setFlag(QGraphicsItem::ItemIsFocusable);
+	player->setFocus();
+	//view.mouse
+
+	//QGraphicsItem *i = scene.focusItem();
+
+	//setAttribute(Qt::WA_TransparentForMouseEvents);
+	//view.setAttribute(Qt::WA_TransparentForMouseEvents);
+
+	//scene.setFocusItem(player);
+	//setFocusPolicy(Qt::NoFocus);
+	//view.setFocusPolicy(Qt::NoFocus); 
+	//scene.setFocusItem(player);
+	//setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
 
 	//Skapar en view och storleken på den samt sätter scenen till viewn
-	QGraphicsView *view = new QGraphicsView(scene);
-	view->setFixedSize(900, 900);
+	//QGraphicsView *view = new QGraphicsView(&scene);
+	view.setScene(&scene);
+	view.setFixedSize(900, 900);
 	//view->setViewportUpdateMode(QGraphicsView::inter);
-	
 
 	//Tar bort scrollbarsen
-	view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-
-
-
+	view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 	/*QTimer * timer = new QTimer();
 	connect(timer, SIGNAL(timeout()), this, SLOT(enemyMoves()));
 	timer->start(50);*/
 
-
-	
+	//Game update interval
+	QTimer *updateTimer = new QTimer;
+	updateTimer->setTimerType(Qt::PreciseTimer);
+	connect(updateTimer, SIGNAL(timeout()), this, SLOT(update()));
+	//timer->start(_gameUpdateInterval * 1000); //ms
+	updateTimer->start(1000 / 60); //ms
 
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);
@@ -66,11 +84,44 @@ Game::Game()
 
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
-	view->show();
-
+	view.show();
+	//view.mousePressEvent()
 	//ui.setupUi(this);
+
+	//Sätt fönsterläge på spelet
+	//view.setWindowState(Qt::WindowFullScreen);
 }
 
 Game::~Game()
 {
 }
+
+//void QGraphicsView::mousePressEvent(QMouseEvent *event)
+//{
+	
+//}
+
+void Game::update()
+{
+	//player->playerUpdate(QKeyEvent e*);
+
+	/*double frameTime = _frameTime->elapsed();
+	_frameTime->restart();
+
+	_accumulator += frameTime;
+	//qDebug() << frameTime;
+	if (_accumulator >= _physicsUpdateInterval * 1000){
+		_physicsSystem.run();
+		_accumulator -= _physicsUpdateInterval * 1000;
+	}
+	_fps += 1;
+
+	_scene.update();
+	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
+}
+
+//void Game::updateFrameTime()
+//{
+	//qDebug() << _fps;
+	//_fps = 0;
+//}

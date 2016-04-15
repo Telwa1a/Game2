@@ -2,13 +2,15 @@
 #define PLAYER_H
 
 #pragma once
-#include "MovingGameObj.h"
 #include <QKeyEvent>
+#include <QObject>
+#include <QTimer>
 
-class Player : public MovingGameObj //,QGraphicsItem
+#include "MovingGameObj.h"
+
+class Player : public QObject, public MovingGameObj
 {
-	//Q_OBJECT
-
+	Q_OBJECT
 	public:
 		Player();
 		~Player();
@@ -18,13 +20,22 @@ class Player : public MovingGameObj //,QGraphicsItem
 
 		void keyPressEvent(QKeyEvent *e);
 		void keyReleaseEvent(QKeyEvent *e);
+		void mousePressEvent(QMouseEvent *e);
+		void mouseReleaseEvent(QMouseEvent *e);
 		//void timerEvent(QTimerEvent *);
+		//void playerUpdate(QKeyEvent * e);
 
 	private:
-		bool isKeyPressed;
+		//bool isKeyPressed = false;
+		QTimer *updateTimer;
 		//Player *_player1;
 		//QMap<int, bool> keys;
+		QSet<int> pressedKeys;
 
+	private slots:
+		//void keyPressEvent(QKeyEvent *e);
+		//void keyReleaseEvent(QKeyEvent *e);
+		void playerUpdate();
 };
 
 #endif //PLAYER_H
