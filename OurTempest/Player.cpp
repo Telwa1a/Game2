@@ -68,58 +68,58 @@ void Player::mouseReleaseEvent(QMouseEvent *e)
 
 void Player::keyPressEvent(QKeyEvent * e)
 {
-	grabKeyboard();
-
-	pressedKeys += ((QKeyEvent*)e)->key();
-
-	//isKeyPressed = true;
-
-	if (!updateTimer->isActive())
-		updateTimer->start(1000 / 60);
-	//if (updateTimer->)
-	//keys[e->key()] = true; 
-	//QGraphicsRectItem::keyPressEvent(e);
-
-	//qDebug() << "Player knows that you pressed a key";
-	//direction.x = 0;
-	//direction.y = 0;
-
-	//if (e->key() == Qt::Key_A)
-	if (pressedKeys.contains(Qt::Key_A))
+	if (controlsAllowed)
 	{
-		direction.x = -1;
-	}
+		grabKeyboard();
 
-	//if (e->key() == Qt::Key_D)
-	if (pressedKeys.contains(Qt::Key_D))
-	{
-		direction.x = 1;
-	}
+		pressedKeys += ((QKeyEvent*)e)->key();
 
-	//if (e->key() == Qt::Key_W)
-	if (pressedKeys.contains(Qt::Key_W))
-	{
-		direction.y = -1;
-	}
+		//isKeyPressed = true;
 
-	//if (e->key() == Qt::Key_S)
-	if (pressedKeys.contains(Qt::Key_S))
-	{
-		direction.y = 1;
-	}
+		if (!updateTimer->isActive())
+			updateTimer->start(1000 / 60);
+		//if (updateTimer->)
+		//keys[e->key()] = true; 
+		//QGraphicsRectItem::keyPressEvent(e);
 
-	//if (e->key() == Qt::Key_Space)
-	if (pressedKeys.contains(Qt::Key_Space))
-	{
-		//Skapar en bullet
-		Bullet * bullet = new Bullet();
-		//qDebug() << "Player knows you want to kill";
-		bullet->setPos(x(), y() + 10);
-		//scene()->addItem(bullet);
-	}
+		//qDebug() << "Player knows that you pressed a key";
+		//direction.x = 0;
+		//direction.y = 0;
 
-	//updateVelocity();
-	//setPos(position.x, position.y);
+		//if (e->key() == Qt::Key_A)
+		if (pressedKeys.contains(Qt::Key_A) && leftAllowed)
+		{
+			direction.x = -1;
+		}
+
+		//if (e->key() == Qt::Key_D)
+		if (pressedKeys.contains(Qt::Key_D) && rightAllowed)
+		{
+			direction.x = 1;
+		}
+
+		//if (e->key() == Qt::Key_W)
+		if (pressedKeys.contains(Qt::Key_W) && upwardsAllowed)
+		{
+			direction.y = -1;
+		}
+
+		//if (e->key() == Qt::Key_S)
+		if (pressedKeys.contains(Qt::Key_S) && downwardsAllowed)
+		{
+			direction.y = 1;
+		}
+
+		//if (e->key() == Qt::Key_Space)
+		if (pressedKeys.contains(Qt::Key_Space) && bulletAllowed)
+		{
+			//Skapar en bullet
+			Bullet * bullet = new Bullet();
+			//qDebug() << "Player knows you want to kill";
+			bullet->setPos(x(), y() + 10);
+			//scene()->addItem(bullet);
+		}
+	}
 }
 
 void Player::keyReleaseEvent(QKeyEvent * e)

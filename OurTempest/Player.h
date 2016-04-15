@@ -17,7 +17,7 @@ class Player : public QObject, public MovingGameObj
 
 		//void paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
 		//void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
-
+		
 		void keyPressEvent(QKeyEvent *e);
 		void keyReleaseEvent(QKeyEvent *e);
 		void mousePressEvent(QMouseEvent *e);
@@ -31,6 +31,14 @@ class Player : public QObject, public MovingGameObj
 		//Player *_player1;
 		//QMap<int, bool> keys;
 		QSet<int> pressedKeys;
+
+		bool upwardsAllowed = true;
+		bool downwardsAllowed = true;
+		bool leftAllowed = true;
+		bool rightAllowed = true;
+		bool bulletAllowed = true;
+
+		bool controlsAllowed = true;
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);
