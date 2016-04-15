@@ -3,6 +3,8 @@
 #include <QTimer>
 #include <QDebug>
 
+
+
 Bullet::Bullet()
 {	
 	//ritade bullet
@@ -22,9 +24,13 @@ Bullet::~Bullet()
 
 void Bullet::move()
 {
+
+	//TODO: move collision to game
 	QList <QGraphicsItem *> colliding_Items = collidingItems();
 	for (int i = 0, n = colliding_Items.size(); i < n; i++)
 	{
+		_score->increase();
+
 		if (typeid(*(colliding_Items[i])) == typeid(RombEnemy))
 		{
 			//Ta bort både bullet och fiende.

@@ -120,6 +120,7 @@
     <ClCompile Include="ParaEnemy.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RombEnemy.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="MovingGameObj.h" />
     <ClInclude Include="ParaEnemy.h" />
     <ClInclude Include="RombEnemy.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Settings.h" />
     <CustomBuild Include="Player.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing Player.h...</Message>

@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QTimer>
 
+
 #include "MovingGameObj.h"
 
 class Player : public QObject, public MovingGameObj
@@ -25,6 +26,9 @@ class Player : public QObject, public MovingGameObj
 		//void timerEvent(QTimerEvent *);
 		//void playerUpdate(QKeyEvent * e);
 
+		HUD theScores(HUD * theScore);
+		
+
 	private:
 		//bool isKeyPressed = false;
 		QTimer *updateTimer;
@@ -37,8 +41,9 @@ class Player : public QObject, public MovingGameObj
 		bool leftAllowed = true;
 		bool rightAllowed = true;
 		bool bulletAllowed = true;
-
 		bool controlsAllowed = true;
+
+		int _score;
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);

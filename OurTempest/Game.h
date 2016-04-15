@@ -12,6 +12,8 @@
 #include "Player.h"
 #include "Course.h"
 #include "RombEnemy.h"
+#include "HUD.h"
+
 #include <QGraphicsScene>
 #include <QSignalMapper>
 
@@ -22,6 +24,9 @@ class Game : public QMainWindow
 		Game();
 		~Game();
 
+		HUD * score;
+	protected:
+		
 	private:
 		//Ui::OurTempestClass ui;
 		//Player *_player;

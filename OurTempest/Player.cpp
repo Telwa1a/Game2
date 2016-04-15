@@ -45,6 +45,10 @@ Player::Player() : MovingGameObj()
 
 	// Gör att fienden inte "driftar åt sidan utan förblir stationär när den skalas upp
 	//setPos(250, 350);
+
+	_score = 0;
+
+	
 }
 
 //TODO::Paint player just for fun
@@ -224,4 +228,10 @@ void Player::playerUpdate()
 {
 	updateVelocity();
 	setPos(position.x, position.y);
+}
+
+HUD Player::theScores(HUD * theScore)
+{
+
+
 }

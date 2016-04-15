@@ -69,6 +69,10 @@ Game::Game()
 	//QObject::connect(enemySpawnTimer, SIGNAL(timeout()), this, SLOT(spawnEnemies()));
 	enemySpawnTimer->start(2000);
 
+	//Initierar score
+	score = new Player();
+	scene.addItem(score);
+
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);
 	scene->addLine(150, 400, 350, 400);
