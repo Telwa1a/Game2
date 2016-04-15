@@ -6,11 +6,13 @@
 #include <QtWidgets/QApplication>
 #include <QGraphicsScene>
 #include <QgraphicsView>
+#include <vector>
 
 //#include "ui_ourtempest.h"
 #include "Player.h"
 #include "Course.h"
 #include "RombEnemy.h"
+#include <QGraphicsScene>
 
 class Game : public QMainWindow
 {
@@ -19,16 +21,20 @@ class Game : public QMainWindow
 		Game();
 		~Game();
 
+	private slots:
+		void spawnEnemies(int enemyNumber);
+
 	private:
 		//Ui::OurTempestClass ui;
 		//Player *_player;
 		//RombEnemy *_rombEnemy;
 		//Course *_course;
+		std::vector<RombEnemy *> _rombVector;
 		QGraphicsScene scene;
 		QGraphicsView view;
 		//PhysicsSystem _physicsSystem;
 		Player *player;
-		RombEnemy *rombenemy;
+		//RombEnemy *rombenemy;
 		//const float _physicsUpdateInterval; //seconds / update
 		//const float _gameUpdateInterval; //seconds / update
 		//long double _accumulator;

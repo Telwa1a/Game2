@@ -19,7 +19,6 @@ class Enemy : public QObject ,public MovingGameObj
 	private slots:
 		void enemyMoves();
 		void makeEnemyBigger();
-		void spawnEnemies();
 };
 
 #endif //ENEMY_H

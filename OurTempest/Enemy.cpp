@@ -4,7 +4,6 @@
 #include <QTimer>
 #include <stdlib.h>
 
-
 Enemy::Enemy() : MovingGameObj()
 {
 	// set random position
@@ -56,8 +55,6 @@ void Enemy::makeEnemyBigger()
 	scale = scale + 0.05f;
 
 	setScale(scale);
-
-	//update();
 }
 
 void Enemy::enemyMoves()
@@ -65,11 +62,4 @@ void Enemy::enemyMoves()
 	//setPos(x(), y() + 5);
 	updateVelocity();
 	setPos(position.x, position.y);
-}
-
-void Enemy::spawnEnemies()
-{
-	//skapa en fiende
-	RombEnemy * rombenemy = new RombEnemy();
-	scene()->addItem(rombenemy);
 }

@@ -13,14 +13,13 @@ Game::Game()
 
 	//Lägger till playern i scenen
 	player = new Player();
-
 	//Player * player = new Player();
 	scene.addItem(player);
 
 	//Lägger till RombEnemy i scenen
 	//RombEnemy *_romb = new RombEnemy();
-	rombenemy = new RombEnemy();
-	scene.addItem(rombenemy);
+	//ombenemy = new RombEnemy();
+	//scene.addItem(rombenemy);
 
 	QTimer * timer = new QTimer();
 	QObject::connect(timer, SIGNAL(timeout()), rombenemy, SLOT(spawnEnemies()));
@@ -58,11 +57,16 @@ Game::Game()
 	timer->start(50);*/
 
 	//Game update interval
-	QTimer *updateTimer = new QTimer;
+	QTimer * updateTimer = new QTimer;
 	updateTimer->setTimerType(Qt::PreciseTimer);
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(update()));
 	//timer->start(_gameUpdateInterval * 1000); //ms
 	updateTimer->start(1000 / 60); //ms
+
+	//Spawnar enemies
+	QTimer * timer = new QTimer();
+	QObject::connect(timer, SIGNAL(timeout()), this, SLOT(spawnEnemies(1)));
+	timer->start(2000);
 
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);
@@ -84,6 +88,7 @@ Game::Game()
 
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
+	
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
@@ -100,6 +105,28 @@ Game::~Game()
 //{
 	
 //}
+
+//void Game::updateFrameTime()
+//{
+	//qDebug() << _fps;
+	//_fps = 0;
+//}
+
+void Game::spawnEnemies(int enemyNumber)
+{
+	if (enemyNumber < 1 || enemyNumber > 4)
+		return;
+
+	if (enemyNumber == 1)
+	{
+		//Lägger till fiende i scenen.
+		RombEnemy * _rombEnemy = new RombEnemy();
+		_scene->addItem(_rombEnemy);
+
+		//Lägger till fiende i vectorn.
+		_rombVector.push_back(_rombEnemy);
+	}
+}
 
 void Game::update()
 {
@@ -118,10 +145,7 @@ void Game::update()
 
 	_scene.update();
 	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
-}
 
-//void Game::updateFrameTime()
-//{
-	//qDebug() << _fps;
-	//_fps = 0;
-//}
+	for (int i = 0; i <= _rombVector.size(); i++){}
+
+}
