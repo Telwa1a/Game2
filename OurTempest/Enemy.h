@@ -9,15 +9,17 @@ public:
 	Enemy();
 	~Enemy();
 
-	void update();
+
 	 
 protected:
-
-
-private slots:
 	void enemyMoves();
 	void makeEnemyBigger();
-	void spawnEnemies();
+
+private slots:
+	//void enemyMoves();
+	//void makeEnemyBigger();
+	void update();
+
 private:
 	float _scale = 0;
 	float _xPos = 100;

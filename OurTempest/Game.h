@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Course.h"
 #include "RombEnemy.h"
+#include <QGraphicsScene>
 
 class Game : public QMainWindow
 {
@@ -23,15 +24,18 @@ class Game : public QMainWindow
 		void update();
 
 	private slots:
-		void spawnEnemies(GameObj *);
+		void spawnEnemies(int enemyNumber);
 
 	private:
 		//Ui::OurTempestClass ui;
 		//Player *_player;
-		RombEnemy *_rombEnemy;
+		//RombEnemy *_rombEnemy;
 		//Course *_course;
 		QGraphicsScene * _scene;
-		std::vector<GameObj *> _gameObjVector;
+		std::vector<RombEnemy *> _rombVector;
+
+
+
 };
 
 #endif //GAME_H
