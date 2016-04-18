@@ -29,3 +29,12 @@ RombEnemy::~RombEnemy()
 {
 }
 
+//TODO: make virtual in enemy
+void RombEnemy::isRombEnemyActive()
+{
+	//om positionen av en RombEnemy är < 0 så ska ett liv subraheras.
+	if (pos().y() < 0)
+	{
+		subractALife();
+	}
+}

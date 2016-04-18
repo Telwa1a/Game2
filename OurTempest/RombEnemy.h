@@ -9,6 +9,7 @@ class RombEnemy : public Enemy
 	public:
 		RombEnemy();
 		~RombEnemy();
+		void isRombEnemyActive();
 };
 
 #endif //ROMBENEMY_H

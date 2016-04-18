@@ -31,6 +31,8 @@ class Player : public QObject, public MovingGameObj
 		HUD * hud;
 
 		void addScoreToHUD();
+		//void addHealthToHUD();
+		void subractALife();
 
 	private:
 		//bool isKeyPressed = false;
@@ -48,6 +50,7 @@ class Player : public QObject, public MovingGameObj
 		bool controlsAllowed = true;
 
 		int _score;
+		int _health;
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);

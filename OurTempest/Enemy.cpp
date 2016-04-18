@@ -2,6 +2,7 @@
 #include "RombEnemy.h"
 #include <QTimer>
 #include <stdlib.h>
+#include <QGraphicsScene>
 
 Enemy::Enemy() : MovingGameObj()
 {
@@ -61,7 +62,7 @@ void Enemy::enemyMoves()
 	//setPos(x(), y() + 5);
 	updateVelocity();
 	setPos(position.x, position.y);
-
+	
  	if (zValue() == 1)
 		stopMovement();
 }
