@@ -22,6 +22,7 @@ Game::Game()
 
 	//Definierar och lägger till spelbanan
 	course = new Course();
+	course->addLinesToScene(scene);
 
 	//Lägger till RombEnemy i scenen
 	//RombEnemy *_romb = new RombEnemy();
@@ -73,24 +74,6 @@ Game::Game()
 	//connect(action1, SIGNAL(triggered()), signalMapper, SLOT(map()));
 	//QObject::connect(enemySpawnTimer, SIGNAL(timeout()), this, SLOT(spawnEnemies()));
 	enemySpawnTimer->start(2000);
-
-	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
-	/*scene->addLine(150, 30, 350, 30);
-	scene->addLine(150, 400, 350, 400);
-	scene->addLine(150, 30, 150, 150);
-	scene->addLine(350, 30, 350, 150);
-	scene->addLine(10, 150, 150, 150);
-	scene->addLine(350, 150, 490, 150);
-
-
-	scene->addLine(350, 400, 350, 290);
-	scene->addLine(150, 400, 150, 290);
-
-	scene->addLine(10, 290, 150, 290);
-	scene->addLine(350, 290, 490, 290);
-
-	scene->addLine(490, 150, 490, 290);
-	scene->addLine(10, 150, 10, 290);*/
 
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
@@ -166,6 +149,7 @@ void Game::updateGame()
 void Game::addSceneItems()
 {
 	scene.addItem(player);
+	scene.addItem(course);
 }
 
 void Game::removeSceneItems()

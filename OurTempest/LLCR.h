@@ -5,6 +5,7 @@
 
 #include "GameObj.h"
 #include "Player.h"
+#include <QGraphicsScene>
 
 class LLCR// : public GameObj//LLCR stands for "Level Line Collision Rectangle"
 {

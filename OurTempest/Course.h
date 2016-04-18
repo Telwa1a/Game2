@@ -5,13 +5,14 @@
 #include <LLCR.h>
 #include "Player.h"
 
-class Course// : public QGraphicsRectItem, public QObject
+class Course : public QGraphicsRectItem, public QObject
 {
 	public:
 		Course();
 		Course(int numberOfLLCRs);
 		~Course();
 		
+		void addLinesToScene(QGraphicsScene &scene);
 		/*QRectF boundingRect() const Q_DECL_OVERRIDE;
 		QPainterPath shape() const Q_DECL_OVERRIDE;
 		void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;*/
@@ -22,6 +23,7 @@ class Course// : public QGraphicsRectItem, public QObject
 		void setCourceLLCRs();
 		float centerX;
 		float centerY;
+		std::vector<QLine> lines;
 
 	private slots:
 		void lerpBackPlayerToLine(Player &player);
