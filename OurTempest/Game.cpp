@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include <QColor>
 #include <QTimer>
+
 Game::Game()
 {
 	//Definiera enum
@@ -11,20 +12,24 @@ Game::Game()
 	//QGraphicsScene *scene = new QGraphicsScene();
 	scene.setSceneRect(0, 0, 600, 450);
 
-	//Lägger till playern i scenen
+	//Definiera spelaren och fokusera på denne
 	player = new Player();
+	player->setFlag(QGraphicsItem::ItemIsFocusable);
+	player->setFocus();
 	//Player * player = new Player();
-	scene.addItem(player);
+	//scene.addItem(player);
+	//scene.removeItem(player);
+
+	//Definierar och lägger till spelbanan
+	course = new Course();
 
 	//Lägger till RombEnemy i scenen
 	//RombEnemy *_romb = new RombEnemy();
 	//rombEnemy = new RombEnemy();
 	//scene.addItem(rombEnemy);
 
-	//Gör playern "focusable"
 	//clearFocus();
-	player->setFlag(QGraphicsItem::ItemIsFocusable);
-	player->setFocus();
+	//player->setEnabled(false);
 	//view.mouse
 
 	//QGraphicsItem *i = scene.focusItem();
@@ -90,6 +95,8 @@ Game::Game()
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
 	//view.setOptimizationFlag(QGraphicsView::IndirectPainting);
+
+	addSceneItems();
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
@@ -125,7 +132,7 @@ void Game::spawnEnemies(int enemyNumber)
 		scene.addItem(rombEnemy);
 
 		//Lägger till fiende i vectorn.
-		_rombVector.push_back(rombEnemy);
+		rombVector.push_back(rombEnemy);
 	}
 }
 
@@ -148,10 +155,36 @@ void Game::updateGame()
 	_scene.update();
 	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
 
-	for (int i = 0; i <= _rombVector.size(); i++){}
+	for (int i = 0; i <= rombVector.size(); i++){}
 
 	if (!player->hasFocus())
 		player->setFocus();
-		//grabKeyboard();
+	//grabKeyboard();
 	//update();
+}
+
+void Game::addSceneItems()
+{
+	scene.addItem(player);
+}
+
+void Game::removeSceneItems()
+{
+	scene.clear();
+}
+
+void Game::disableSceneItems()
+{
+	foreach(QGraphicsItem* gameObj, scene.items())
+	{
+		gameObj->setEnabled(false);
+	}
+}
+
+void Game::enableSceneItems()
+{
+	foreach(QGraphicsItem* gameObj, scene.items())
+	{
+		gameObj->setEnabled(true);
+	}
 }

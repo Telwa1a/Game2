@@ -1,9 +1,13 @@
 #include "LLCR.h"
 
-LLCR::LLCR()
+LLCR::LLCR()// : GameObj()
 {
 }
 
 LLCR::~LLCR()
+{
+}
+
+void LLCR::whenTriggerEnabled(Player &player)
 {
 }
