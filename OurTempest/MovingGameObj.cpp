@@ -135,3 +135,9 @@ void MovingGameObj::updateVelocity()
 	position.x += (velocity.x * direction.x);
 	position.y += (velocity.y * direction.y);
 }
+
+void MovingGameObj::stopMovement()
+{
+	direction.x = 0;
+	direction.y = 0;
+}

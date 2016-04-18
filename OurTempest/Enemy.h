@@ -5,9 +5,10 @@
 #include <QObject>
 #include "MovingGameObj.h"
 
-class Enemy : public QObject ,public MovingGameObj
+class Enemy : public QObject, public MovingGameObj
 {
 	Q_OBJECT
+
 	public:
 		Enemy();
 		~Enemy();

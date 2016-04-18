@@ -17,6 +17,13 @@ class Bullet : public QObject, public MovingGameObj
 	public:
 		Bullet();
 		~Bullet();
+		bool removeBullet = false;
+		bool shallBulletGo = false;
+		int getAddedScore();
+
+	private:
+		int scoreToAdd;
+		void destroyBullet();
 
 	public slots:
 		void move();

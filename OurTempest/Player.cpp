@@ -4,8 +4,14 @@
 #include "Game.h"
 
 #include <QDebug>
+
 Player::Player() : MovingGameObj()
 {
+	hud = new HUD();
+	//scene()->addItem(hud);
+	//QGraphicsScene * scenus = scene();
+	//scenus->addItem(hud);
+
 	//gra
 	//QKeyEvent::isAutoRepeat = false;
 	updateTimer = new QTimer;
@@ -75,7 +81,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 {
 	if (controlsAllowed)
 	{
-		grabKeyboard();
+		//grabKeyboard();
 
 		pressedKeys += ((QKeyEvent*)e)->key();
 
@@ -119,17 +125,20 @@ void Player::keyPressEvent(QKeyEvent * e)
 		if (pressedKeys.contains(Qt::Key_Space) && bulletAllowed)
 		{
 			//Skapar en bullet
+			//Bullet bullet;
 			Bullet * bullet = new Bullet();
-			//qDebug() << "Player knows you want to kill";
 			bullet->setPos(x(), y() + 10);
-			//scene()->addItem(bullet);
+			//bulletArray.push_back(bullet);
+			//qDebug() << "Player knows you want to kill";
+			//bullet->setPos(x(), y() + 10);
+			scene()->addItem(bullet);
 		}
 	}
 }
 
 void Player::keyReleaseEvent(QKeyEvent * e)
 {
-	grabKeyboard();
+	//grabKeyboard();
 
 	pressedKeys -= ((QKeyEvent*)e)->key();
 
@@ -228,10 +237,22 @@ void Player::playerUpdate()
 {
 	updateVelocity();
 	setPos(position.x, position.y);
-}
 
-HUD Player::theScores(HUD * theScore)
-{
+	QList <QGraphicsItem*> allItems = scene()->items();
+	for (int i = 0; i < scene()->items().length(); i++)
+	{
+		if (typeid(*(allItems[i])) == typeid(Bullet))
+		{
+			Bullet *getBullet;
 
-
+			if (getBullet = dynamic_cast<Bullet*>(allItems[i]))
+			{
+				if (getBullet->removeBullet)
+				{
+					_score = _score + getBullet->getAddedScore();
+					hud->getPlayerScore(_score);
+				}
+			}
+		}
+	}
 }

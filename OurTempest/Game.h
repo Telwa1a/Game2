@@ -20,12 +20,12 @@
 class Game : public QMainWindow
 {
 	Q_OBJECT
+
 	public:
 		Game();
 		~Game();
 
-		HUD * score;
-	protected:
+	//protected:
 		
 	private:
 		//Ui::OurTempestClass ui;
@@ -41,6 +41,7 @@ class Game : public QMainWindow
 		QTimer *updateTimer;
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
+		//HUD * hud;
 		//const float _physicsUpdateInterval; //seconds / update
 		//const float _gameUpdateInterval; //seconds / update
 		//long double _accumulator;

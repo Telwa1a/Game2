@@ -1,6 +1,5 @@
 #include "Enemy.h"
 #include "RombEnemy.h"
-#include "Game.h"
 #include <QTimer>
 #include <stdlib.h>
 
@@ -62,4 +61,7 @@ void Enemy::enemyMoves()
 	//setPos(x(), y() + 5);
 	updateVelocity();
 	setPos(position.x, position.y);
+
+ 	if (zValue() == 1)
+		stopMovement();
 }

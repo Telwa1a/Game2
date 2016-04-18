@@ -70,8 +70,10 @@ Game::Game()
 	enemySpawnTimer->start(2000);
 
 	//Initierar score
-	score = new Player();
-	scene.addItem(score);
+	//hud = new HUD();
+	//scene.addItem(hud);
+	scene.addItem(player->hud);
+	scene.addItem(player->hud->iteum);
 
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);
