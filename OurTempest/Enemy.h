@@ -3,9 +3,10 @@
 
 #pragma once
 #include <QObject>
-#include "MovingGameObj.h"
+//#include "MovingGameObj.h"
+#include <QGraphicsPixmapItem>
 
-class Enemy : public QObject, public MovingGameObj
+class Enemy : public QObject, public QGraphicsPixmapItem//, public MovingGameObj
 {
 	Q_OBJECT
 

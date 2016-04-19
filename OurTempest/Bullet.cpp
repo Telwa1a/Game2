@@ -5,8 +5,11 @@
 
 Bullet::Bullet()
 {	
-	//ritade bullet
-	setRect(200, 350, 10, 30);
+	//ritar bullet
+	//setRect(200, 350, 10, 30);
+
+	//Ritar Bullet med pixmap
+	setPixmap(QPixmap(":/Dokument\My Pictures/Bullet.png"))
 
 	//connect
 	QTimer * timer = new QTimer();

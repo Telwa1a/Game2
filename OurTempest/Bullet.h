@@ -8,9 +8,11 @@
 #include "Game.h"
 #include <QList>
 #include <QObject>
-#include "MovingGameObj.h"
+//#include "MovingGameObj.h"
 
-class Bullet : public QObject, public MovingGameObj
+#include <QGraphicsPixmapItem>
+
+class Bullet : public QObject, public QGraphicsPixmapItem//, public MovingGameObj
 {
 	Q_OBJECT
 

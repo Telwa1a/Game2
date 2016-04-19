@@ -1,4 +1,8 @@
 <RCC>
     <qresource prefix="OurTempest">
+      <file>G:\Dokument\My Pictures/bg.png</file>
+      <file>G:\Dokument\My Pictures/Bullet.png</file>
+      <file>G:\Dokument\My Pictures/Enemy.png</file>
+      <file>G:\Dokument\My Pictures/Player.png</file>
     </qresource>
 </RCC>

@@ -19,6 +19,9 @@ RombEnemy::RombEnemy()
 	//TODO: make enemy in the shape of a romb
 	setRect(position.x, position.y, size.x, size.y); 
 
+	//Ritar enemy med pixmap
+	//setPixmap(QPixmap(":\Dokument\My Pictures/Enemy.png"));
+
 	// Gör att fienden inte "driftar åt sidan utan förblir stationär när den skalas upp
 	setPos(position.x, position.y);
 	setTransformOriginPoint(position.x + (size.x / 2), position.y + (size.y / 2));

@@ -3,7 +3,7 @@
 #include <QTimer>
 #include <stdlib.h>
 
-Enemy::Enemy() : MovingGameObj()
+Enemy::Enemy() : QGraphicsPixmapItem () //: MovingGameObj()
 {
 	// set random position
 	int randomNumber = rand() % 400;
@@ -28,6 +28,8 @@ Enemy::Enemy() : MovingGameObj()
 	//Set player rect
 	setRect(position.x, position.y, size.x, size.y);
 	
+	
+
 	timerMove = new QTimer();
 	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
 	timerMove->start(1000/60);
