@@ -1,6 +1,6 @@
 #include "HUD.h"
 
-HUD::HUD() : GameObj(0, 0, 400, 400)
+HUD::HUD() : GameObj(180, -150, 450, 150)
 {
 	//Skriver ut text.
 	//scoar = new QLCDNumber();
@@ -32,12 +32,21 @@ HUD::HUD() : GameObj(0, 0, 400, 400)
 	setPos(-130, -200);
 	setTextInteractionFlags(Qt::TextEditorInteraction);*/
 
-	iteum = new QGraphicsTextItem();
-	iteum->setPlainText(QString("Score: ") + QString::number(_score));
-	iteum->setDefaultTextColor(Qt::darkMagenta);
-	iteum->setFont(QFont("Courier", 20));
-	iteum->setPos(-130, -200);
+	//TODO: Fixa roligare fonts..
+	textItemScore = new QGraphicsTextItem();
+	textItemScore->setPlainText(QString("Score: ") + QString::number(_score));
+	textItemScore->setDefaultTextColor(Qt::darkMagenta);
+	textItemScore->setFont(QFont("Courier", 20));
+	textItemScore->setPos(400, -210);
 	//setTextInteractionFlags(Qt::TextEditorInteraction);
+
+	//TODO: Fixa roligare fonts..
+	textItemHealth = new QGraphicsTextItem();
+	textItemHealth->setPlainText(QString("Health: ") + QString::number(_health));
+	textItemHealth->setDefaultTextColor(Qt::black);
+	textItemHealth->setFont(QFont("Courier", 20));
+	textItemHealth->setPos(550, -210);
+
 
 	updateTimer = new QTimer();
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateHUD()));
@@ -55,6 +64,11 @@ void HUD::getPlayerScore(int score)
 	//iteum->setPlainText(QString("Score: ") + QString::number(_score));
 }
 
+void HUD::getPlayerHealth(int health)
+{
+	_health = health;
+}
+
 void HUD::updateHUD()
 {
 	//if (_score >= 1)
@@ -65,5 +79,6 @@ void HUD::updateHUD()
 	//scoar->display(QString("Score: ") + QString::number(_score));
 	//labelina->repaint();
 	//iteum->update();
-	iteum->setPlainText(QString("Score: ") + QString::number(_score));
+	textItemScore->setPlainText(QString("Score: ") + QString::number(_score));
+	textItemHealth->setPlainText(QString("Health: ") + QString::number(_health));
 }

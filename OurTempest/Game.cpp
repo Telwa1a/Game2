@@ -73,8 +73,25 @@ Game::Game()
 	//hud = new HUD();
 	//scene.addItem(hud);
 	scene.addItem(player->hud);
-	scene.addItem(player->hud->iteum);
+	scene.addItem(player->hud->textItemScore);
+	scene.addItem(player->hud->textItemHealth);
 
+
+	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv.
+	/*if (rombEnemy->y() < 300)
+	{
+		//int newHealth = player->hud->_health - 1;
+
+		/*if (newHealth == 0);
+		{
+			//Print "GAME OVER"
+		}
+		//subractALife();
+		
+	}*/
+
+
+	
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);
 	scene->addLine(150, 400, 350, 400);

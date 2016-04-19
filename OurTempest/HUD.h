@@ -20,12 +20,17 @@ class HUD : public QObject, public GameObj
 		HUD();
 		~HUD();
 		//QLabel * labelina;
-		QGraphicsTextItem * iteum;
+		QGraphicsTextItem * textItemScore;
+		QGraphicsTextItem * textItemHealth;
 
 		void getPlayerScore(int score);
+		void getPlayerHealth(int health);
 		
+		int _health = 4;
+
 	private:
 		int _score = 0;
+		//int _health = 4;
 		QTimer * updateTimer;
 		//QTextLine maddafacka();
 		//QTextEdit * scoreText;

@@ -53,7 +53,7 @@ Player::Player() : MovingGameObj()
 	//setPos(250, 350);
 
 	_score = 0;
-	_health = 4;
+	//_health = 4;
 	
 }
 
@@ -233,13 +233,13 @@ Player::~Player()
 	}
 }*/
 
-void Player::subractALife()
+/*void Player::subractALife()
 {
 	int newHealth = _health - 1;
-	if (_health == 0)
+	if (_health == 0);
 		//Print "GAME OVER"
 }
-
+*/
 void Player::playerUpdate()
 {
 	updateVelocity();

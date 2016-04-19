@@ -33,6 +33,8 @@ class MovingGameObj : public GameObj
 		Vector2 velocityMax;
 		void updateVelocity();
 		float scale;
+
+		
 };
 
 #endif //MOVINGGAMEOBJ_H
