@@ -78,18 +78,22 @@ Game::Game()
 
 
 	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv.
-	/*if (rombEnemy->pos.y < scene.height)
+	/*for (int i = 0; i < _rombVector.size(); i++)
 	{
-		int newHealth = player->hud->_health - 1;
-
-		if (newHealth == 0);
+		if ( [........] scene.height)
 		{
-			//Print "GAME OVER"
+			player->hud->_health -= 1;
+
+			if (player->hud->_health == 0);
+			{
+				//Print "GAME OVER"
+			}
+			//subractALife();
+	
 		}
-		//subractALife();
-		
 	}
 	*/
+	
 
 	
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
