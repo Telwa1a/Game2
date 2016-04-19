@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="OurTempest">
+    <qresource prefix="/OurTempest">
+        <file>G:/Dokument/My Music/Ljud/Bakgrundsmusik/Mega Man 3 (NES) Music - Select Screen.mp3</file>
+        <file>G:/Dokument/My Music/Ljud/Ljudeffekter/380_gunshot_single-mike-koenig.wav</file>
     </qresource>
 </RCC>

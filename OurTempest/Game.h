@@ -16,6 +16,8 @@
 
 #include <QGraphicsScene>
 #include <QSignalMapper>
+#include <QTMultimedia/QMediaPlayer>
+#include <QUrl>
 
 class Game : public QMainWindow
 {
@@ -41,6 +43,8 @@ class Game : public QMainWindow
 		QTimer *updateTimer;
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
+
+		QMediaPlayer *bgMusic;
 
 		//HUD * hud;
 		//const float _physicsUpdateInterval; //seconds / update

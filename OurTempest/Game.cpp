@@ -2,6 +2,8 @@
 #include "Enemy.h"
 #include <QColor>
 #include <QTimer>
+
+
 Game::Game()
 {
 	//Definiera enum
@@ -113,6 +115,12 @@ Game::Game()
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
 	
+
+	bgMusic = new QMediaPlayer;
+	bgMusic->setMedia(QMediaContent(QUrl("qrc:/Mega Man 3 (NES) Music - Select Screen.mp3")));
+
+
+
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
