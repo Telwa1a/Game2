@@ -18,6 +18,7 @@
 #include <QSignalMapper>
 #include <QTMultimedia/QMediaPlayer>
 #include <QUrl>
+#include <QTMultimedia/QMediaContent>
 
 class Game : public QMainWindow
 {
@@ -29,6 +30,7 @@ class Game : public QMainWindow
 
 	//protected:
 		
+
 	private:
 		//Ui::OurTempestClass ui;
 		//Player *_player;
@@ -43,8 +45,8 @@ class Game : public QMainWindow
 		QTimer *updateTimer;
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
-
 		QMediaPlayer *bgMusic;
+		
 
 		//HUD * hud;
 		//const float _physicsUpdateInterval; //seconds / update

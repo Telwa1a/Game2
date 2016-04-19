@@ -117,10 +117,11 @@ Game::Game()
 	
 
 	bgMusic = new QMediaPlayer;
-	bgMusic->setMedia(QMediaContent(QUrl("qrc:/Mega Man 3 (NES) Music - Select Screen.mp3")));
-
-
-
+	//connect(bgMusic, SIGNAL(positionChanged(qint64)), this, SLOT(positionChanged(qint64)));
+	//bgMusic->setMedia(QMediaContent(QUrl("qrc:/Mega Man 3 (NES) Music - Select Screen.mp3")));
+	
+	bgMusic->setMedia(QUrl("qrc:/Mega Man 3 (NES) Music - Select Screen.mp3"));
+	bgMusic->play();
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
