@@ -41,6 +41,7 @@ class Game : public QMainWindow
 		QTimer *updateTimer;
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
+		
 
 		//HUD * hud;
 		//const float _physicsUpdateInterval; //seconds / update

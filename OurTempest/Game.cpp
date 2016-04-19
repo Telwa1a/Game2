@@ -78,18 +78,18 @@ Game::Game()
 
 
 	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv.
-	/*if (rombEnemy->y() < 300)
+	/*if (rombEnemy->pos.y < scene.height)
 	{
-		//int newHealth = player->hud->_health - 1;
+		int newHealth = player->hud->_health - 1;
 
-		/*if (newHealth == 0);
+		if (newHealth == 0);
 		{
 			//Print "GAME OVER"
 		}
 		//subractALife();
 		
-	}*/
-
+	}
+	*/
 
 	
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
@@ -113,6 +113,8 @@ Game::Game()
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
 	
+
+
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
