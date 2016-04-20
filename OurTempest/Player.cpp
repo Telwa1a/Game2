@@ -55,6 +55,10 @@ Player::Player() : MovingGameObj()
 	_score = 0;
 	//_health = 4;
 	
+	gunShot = new QMediaPlayer();
+	gunShot->setMedia(QUrl("qrc:/OurTempest/Bomb-SoundBible.com-891110113.wav"));
+	gunShot->setVolume(100);
+	//gunShot->play();
 }
 
 //TODO::Paint player just for fun
@@ -131,6 +135,12 @@ void Player::keyPressEvent(QKeyEvent * e)
 			//bulletArray.push_back(bullet);
 			//qDebug() << "Player knows you want to kill";
 			//bullet->setPos(x(), y() + 10);
+
+			if (gunShot->state() == QMediaPlayer::PlayingState)
+				gunShot->setPosition(0);
+			else if (gunShot->state() == QMediaPlayer::StoppedState)
+				gunShot->play();
+				
 			scene()->addItem(bullet);
 		}
 	}
