@@ -3,6 +3,13 @@
 #include <QTimer>
 #include <stdlib.h>
 
+#include "Player.h"
+#include "MovingGameObj.h"
+#include "Bullet.h"
+#include "Game.h"
+
+#include <QDebug>
+
 Enemy::Enemy() : MovingGameObj()
 {
 	// set random position
@@ -28,10 +35,10 @@ Enemy::Enemy() : MovingGameObj()
 	//Set player rect
 	setRect(0, 0, size.x, size.y);
 	
-	timerMove = new QTimer();
+	timerMove = new QTimer(this);
 	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
 	timerMove->start(1000/60);
-	timerScale = new QTimer();
+	timerScale = new QTimer(this);
 	connect(timerScale, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
 	timerScale->start(1000/60);
 }
@@ -63,4 +70,11 @@ void Enemy::enemyMoves()
 
  	if (zValue() == 1)
 		stopMovement();
+
+	if (position.x > scene()->width() || position.y > scene()->height() || position.x < 0 || position.y < 0)
+	{
+		scene()->removeItem(this);
+		//delete this;
+		QObject::deleteLater();
+	}
 }

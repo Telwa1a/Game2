@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #pragma once
+
 #include <QObject>
 #include "MovingGameObj.h"
 

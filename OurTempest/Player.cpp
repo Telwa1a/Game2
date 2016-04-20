@@ -14,7 +14,7 @@ Player::Player() : MovingGameObj()
 
 	//gra
 	//QKeyEvent::isAutoRepeat = false;
-	updateTimer = new QTimer;
+	updateTimer = new QTimer(this);
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(playerUpdate()));
 	//setCacheMode(QGraphicsItem::DeviceCoordinateCache);
 	//updateTimer->setTimerType(Qt::PreciseTimer);
@@ -129,7 +129,8 @@ void Player::keyPressEvent(QKeyEvent * e)
 			//Skapar en bullet
 			//Bullet bullet;
 			Bullet * bullet = new Bullet();
-			bullet->setPos(x(), y() + 10);
+			//bullet->setPos(x(), y());
+			bullet->setObjPos(x(), y());
 			//bulletArray.push_back(bullet);
 			//qDebug() << "Player knows you want to kill";
 			//bullet->setPos(x(), y() + 10);

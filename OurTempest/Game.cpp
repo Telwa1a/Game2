@@ -59,14 +59,14 @@ Game::Game()
 	signalMapper = new QSignalMapper(this);
 
 	//Game update interval
-	updateTimer = new QTimer;
+	updateTimer = new QTimer(this);
 	updateTimer->setTimerType(Qt::PreciseTimer);
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateGame()));
 	//timer->start(_gameUpdateInterval * 1000); //ms
 	updateTimer->start(1000 / 60); //ms
 
 	//Spawnar enemies
-	enemySpawnTimer = new QTimer();
+	enemySpawnTimer = new QTimer(this);
 	connect(enemySpawnTimer, SIGNAL(timeout()), signalMapper, SLOT(map()));
 	signalMapper->setMapping(enemySpawnTimer, 1);
 	connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(spawnEnemies(int)));
