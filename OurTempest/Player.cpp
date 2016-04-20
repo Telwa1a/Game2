@@ -91,6 +91,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 
 		if (!updateTimer->isActive())
 			updateTimer->start(1000 / 60);
+
 		//if (updateTimer->)
 		//keys[e->key()] = true; 
 		//QGraphicsRectItem::keyPressEvent(e);
@@ -128,9 +129,9 @@ void Player::keyPressEvent(QKeyEvent * e)
 		{
 			//Skapar en bullet
 			//Bullet bullet;
-			Bullet * bullet = new Bullet();
+			Bullet * bullet = new Bullet(x(), y());
 			//bullet->setPos(x(), y());
-			bullet->setObjPos(x(), y());
+			//bullet->setObjPos(x(), y());
 			//bulletArray.push_back(bullet);
 			//qDebug() << "Player knows you want to kill";
 			//bullet->setPos(x(), y() + 10);
@@ -161,7 +162,12 @@ void Player::keyReleaseEvent(QKeyEvent * e)
 		direction.x = 0;
 	}
 
-	if (!pressedKeys.contains(Qt::Key_Space))
+	if (pressedKeys.contains(Qt::Key_Space) && bulletAllowed)
+	{
+		bulletAllowed = false;
+	}
+
+	if (!pressedKeys.contains(Qt::Key_Space) && !bulletAllowed)
 	{
 		bulletAllowed = true;
 	}
@@ -262,6 +268,7 @@ void Player::playerUpdate()
 				{
 					_score = _score + getBullet->getAddedScore();
 					hud->getPlayerScore(_score);
+					break;
 				}
 			}
 		}
@@ -274,8 +281,16 @@ void Player::playerUpdate()
 
 		if (getLLCR = dynamic_cast<LLCR*>(allCollItems[i]))
 		{
-			//getLLCR->
-			//qDebug() << "Player knows you want to kill";
+			if (!getLLCR->hasBeenCollidedWith)
+			{
+				//break;
+				getLLCR->setCurrentLLCR(this);
+			}
+
+			//if (getLLCR->hasBeenCollidedWith)
+			//{
+				//break;
+			//}
 		}
 
 		///if (getLLCR = dynamic_cast<LLCR*>(allCollItems[i]) && collidesWithItem(getLLCR))

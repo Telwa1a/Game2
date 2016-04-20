@@ -12,9 +12,16 @@ LLCR::~LLCR()
 {
 }
 
-bool LLCR::hasPlayerCollided(Player *player)
+bool LLCR::hasPlayerCollidedPreviously(Player *player)
 {
+	//if (hasBeenCollidedWith)
+
 	return false;
+}
+
+void LLCR::setCurrentLLCR(Player *player)
+{
+	attachedPlayer = player;
 }
 
 //LLCR::col

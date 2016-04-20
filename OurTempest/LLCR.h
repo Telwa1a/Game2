@@ -17,7 +17,9 @@ class LLCR : public QGraphicsRectItem//, public QObject //public QRect, //public
 	public:
 		LLCR();
 		~LLCR();
-		bool hasPlayerCollided(Player *player);
+		bool hasPlayerCollidedPreviously(Player *player);
+		bool hasBeenCollidedWith = false;
+		void setCurrentLLCR(Player *player);
 
 	private:
 		QTimer updateTimer;
@@ -25,8 +27,10 @@ class LLCR : public QGraphicsRectItem//, public QObject //public QRect, //public
 		float centerY;
 		bool isTriggerEnabled;
 		bool collisionEnabled;
+		//bool hasBeenCollidedWith = false;
 		//void whenTriggerEnabled(Player &player);
 		std::vector<float> allowedDirections[4];
+		Player * attachedPlayer; //ADDRESS TO THE PLAYER ATTACHED TO THE CURRENT LLCR
 
 };
 
