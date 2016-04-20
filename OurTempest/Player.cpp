@@ -4,8 +4,14 @@
 #include "Game.h"
 
 #include <QDebug>
+
 Player::Player() : MovingGameObj()
 {
+	hud = new HUD();
+	//scene()->addItem(hud);
+	//QGraphicsScene * scenus = scene();
+	//scenus->addItem(hud);
+
 	//gra
 	//QKeyEvent::isAutoRepeat = false;
 	updateTimer = new QTimer;
@@ -46,6 +52,10 @@ Player::Player() : MovingGameObj()
 
 	// Gör att fienden inte "driftar åt sidan utan förblir stationär när den skalas upp
 	//setPos(250, 350);
+
+	_score = 0;
+
+	
 }
 
 //TODO::Paint player just for fun
@@ -117,10 +127,13 @@ void Player::keyPressEvent(QKeyEvent * e)
 		if (pressedKeys.contains(Qt::Key_Space) && bulletAllowed)
 		{
 			//Skapar en bullet
+			//Bullet bullet;
 			Bullet * bullet = new Bullet();
-			//qDebug() << "Player knows you want to kill";
 			bullet->setPos(x(), y() + 10);
-			//scene()->addItem(bullet);
+			//bulletArray.push_back(bullet);
+			//qDebug() << "Player knows you want to kill";
+			//bullet->setPos(x(), y() + 10);
+			scene()->addItem(bullet);
 		}
 	}
 }
@@ -226,5 +239,24 @@ Player::~Player()
 void Player::playerUpdate()
 {
 	updateVelocity();
-	setPos(position.x, position.y);	
+
+	setPos(position.x, position.y);
+
+	QList <QGraphicsItem*> allItems = scene()->items();
+	for (int i = 0; i < scene()->items().length(); i++)
+	{
+		if (typeid(*(allItems[i])) == typeid(Bullet))
+		{
+			Bullet *getBullet;
+
+			if (getBullet = dynamic_cast<Bullet*>(allItems[i]))
+			{
+				if (getBullet->removeBullet)
+				{
+					_score = _score + getBullet->getAddedScore();
+					hud->getPlayerScore(_score);
+				}
+			}
+		}
+	}
 }

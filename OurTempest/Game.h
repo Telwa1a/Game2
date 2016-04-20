@@ -12,16 +12,21 @@
 #include "Player.h"
 #include "Course.h"
 #include "RombEnemy.h"
+#include "HUD.h"
+
 #include <QGraphicsScene>
 #include <QSignalMapper>
 
 class Game : public QMainWindow
 {
 	Q_OBJECT
+
 	public:
 		Game();
 		~Game();
 
+	//protected:
+		
 	private:
 		//Ui::OurTempestClass ui;
 		//Player *_player;
@@ -36,6 +41,7 @@ class Game : public QMainWindow
 		QTimer *updateTimer;
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
+		//HUD * hud;
 		//const float _physicsUpdateInterval; //seconds / update
 		//const float _gameUpdateInterval; //seconds / update
 		//long double _accumulator;

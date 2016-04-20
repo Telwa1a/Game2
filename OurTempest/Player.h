@@ -2,15 +2,18 @@
 #define PLAYER_H
 
 #pragma once
+
 #include <QKeyEvent>
 #include <QObject>
 #include <QTimer>
 
+#include "HUD.h"
 #include "MovingGameObj.h"
 
 class Player : public QObject, public MovingGameObj
 {
 	Q_OBJECT
+
 	public:
 		Player();
 		~Player();
@@ -25,20 +28,26 @@ class Player : public QObject, public MovingGameObj
 		//void timerEvent(QTimerEvent *);
 		//void playerUpdate(QKeyEvent * e);
 
+		HUD * hud;
+
+		void addScoreToHUD();
+
 	private:
 		//bool isKeyPressed = false;
 		QTimer *updateTimer;
 		//Player *_player1;
 		//QMap<int, bool> keys;
 		QSet<int> pressedKeys;
+		//std::vector<Bullet> bulletArray;
 
 		bool upwardsAllowed = true;
 		bool downwardsAllowed = true;
 		bool leftAllowed = true;
 		bool rightAllowed = true;
 		bool bulletAllowed = true;
-
 		bool controlsAllowed = true;
+
+		int _score;
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);

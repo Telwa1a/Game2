@@ -23,6 +23,8 @@ class MovingGameObj : public GameObj
 		MovingGameObj(const Vector2 _direction, const Vector2 _velocity, const Vector2 _maxVelocity, const Vector2 _position);
 		MovingGameObj(const Vector2 _direction, const Vector2 _velocity, const Vector2 _maxVelocity, const Vector2 _position, const Vector2 _size);
 
+		void stopMovement();
+
 		~MovingGameObj();
 
 	protected:
