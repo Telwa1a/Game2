@@ -28,7 +28,9 @@ void Bullet::move()
 		QList <QGraphicsItem *> colliding_Items = collidingItems();
 		for (int i = 0, n = colliding_Items.size(); i < n; i++)
 		{
-			if (typeid(*(colliding_Items[i])) == typeid(RombEnemy))
+			Enemy *enemy;
+
+			if (enemy = dynamic_cast<Enemy*>(colliding_Items[i]))
 			{
 				colliding_Items[i]->setZValue(1); //Enemy is automatically stopped in it's own update
 				scoreToAdd = 1;

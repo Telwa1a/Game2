@@ -134,6 +134,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 			//qDebug() << "Player knows you want to kill";
 			//bullet->setPos(x(), y() + 10);
 			scene()->addItem(bullet);
+			bulletAllowed = false;
 		}
 	}
 }
@@ -157,6 +158,11 @@ void Player::keyReleaseEvent(QKeyEvent * e)
 	if (!pressedKeys.contains(Qt::Key_A) && !pressedKeys.contains(Qt::Key_D))
 	{
 		direction.x = 0;
+	}
+
+	if (!pressedKeys.contains(Qt::Key_Space))
+	{
+		bulletAllowed = true;
 	}
 
 	//if (updateTimer->isActive())
