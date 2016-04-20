@@ -4,7 +4,7 @@
 #include "HUD.h"
 
 
-RombEnemy::RombEnemy()
+RombEnemy::RombEnemy() : Enemy()
 {
 	//Set values for player variables
 	velocity.x = 0;

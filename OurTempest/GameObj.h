@@ -22,6 +22,7 @@ class GameObj : public QGraphicsRectItem
 		GameObj(const float xpos, const float ypos, const float width, const float height);
 		GameObj(const Vector2 _pos, const Vector2 _size);
 		~GameObj();
+		void setObjPos(float posx, float posy);
 };
 
 #endif //GAMEOBJ_H

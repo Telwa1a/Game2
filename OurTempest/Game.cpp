@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include <QColor>
 #include <QTimer>
+
 Game::Game()
 {
 	//Definiera enum
@@ -9,22 +10,26 @@ Game::Game()
 
 	//Skapar en scen och sätter storleken
 	//QGraphicsScene *scene = new QGraphicsScene();
-	scene.setSceneRect(0, 0, 600, 450);
+	scene.setSceneRect(0, 0, 1600, 900); //DEFAULT RESOLUTION IS 1600X900 FOR THIS GAME
 
-	//Lägger till playern i scenen
+	//Definiera spelaren och sätter fokus på spelaren
 	player = new Player();
+	player->setFlag(QGraphicsItem::ItemIsFocusable);
+	player->setFocus();
 	//Player * player = new Player();
-	scene.addItem(player);
+	//scene.addItem(player);
+	//scene.removeItem(player);
+
+	//Definierar spelbanan
+	course = new Course(12, 24);
 
 	//Lägger till RombEnemy i scenen
 	//RombEnemy *_romb = new RombEnemy();
 	//rombEnemy = new RombEnemy();
 	//scene.addItem(rombEnemy);
 
-	//Gör playern "focusable"
 	//clearFocus();
-	player->setFlag(QGraphicsItem::ItemIsFocusable);
-	player->setFocus();
+	//player->setEnabled(false);
 	//view.mouse
 
 	//QGraphicsItem *i = scene.focusItem();
@@ -41,8 +46,8 @@ Game::Game()
 	//Skapar en view och storleken på den samt sätter scenen till viewn
 	//QGraphicsView *view = new QGraphicsView(&scene);
 	view.setScene(&scene);
-	view.setFixedSize(900, 900);
-	//view->setViewportUpdateMode(QGraphicsView::inter);
+	view.setFixedSize(scene.width(), scene.height());
+	view.setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
 	//Tar bort scrollbarsen
 	view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -54,30 +59,25 @@ Game::Game()
 	signalMapper = new QSignalMapper(this);
 
 	//Game update interval
-	updateTimer = new QTimer;
+	updateTimer = new QTimer(this);
 	updateTimer->setTimerType(Qt::PreciseTimer);
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateGame()));
 	//timer->start(_gameUpdateInterval * 1000); //ms
 	updateTimer->start(1000 / 60); //ms
 
 	//Spawnar enemies
-	enemySpawnTimer = new QTimer();
+	enemySpawnTimer = new QTimer(this);
 	connect(enemySpawnTimer, SIGNAL(timeout()), signalMapper, SLOT(map()));
 	signalMapper->setMapping(enemySpawnTimer, 1);
 	connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(spawnEnemies(int)));
 	//connect(action1, SIGNAL(triggered()), signalMapper, SLOT(map()));
 	//QObject::connect(enemySpawnTimer, SIGNAL(timeout()), this, SLOT(spawnEnemies()));
 	enemySpawnTimer->start(2000);
+	//view.setOptimizationFlag(QGraphicsView::IndirectPainting);
 
 	//Initierar score
 	//hud = new HUD();
 	//scene.addItem(hud);
-	scene.addItem(player->hud);
-	scene.addItem(player->hud->textItemScore);
-	scene.addItem(player->hud->textItemHealth);
-	scene.addItem(player->hud->textItemGAMEOVER);
-
-
 
 	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv. scrap this shit
 	/*for (int i = 0; i < _rombVector.size(); i++)
@@ -95,8 +95,6 @@ Game::Game()
 		}
 	}
 	*/
-	
-
 	
 	//TODO: flytta detta till courseklassen. så att det funkar som Playerklassen.
 	/*scene->addLine(150, 30, 350, 30);
@@ -118,8 +116,7 @@ Game::Game()
 
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
-	
-
+	addSceneItems();
 
 	view.show();
 	//view.mousePressEvent()
@@ -156,12 +153,13 @@ void Game::spawnEnemies(int enemyNumber)
 		scene.addItem(rombEnemy);
 
 		//Lägger till fiende i vectorn.
-		_rombVector.push_back(rombEnemy);
+		rombVector.push_back(rombEnemy);
 	}
 }
 
 void Game::updateGame()
 {
+	//QScreen
 	//player->playerUpdate(QKeyEvent e*);
 
 	/*double frameTime = _frameTime->elapsed();
@@ -178,7 +176,7 @@ void Game::updateGame()
 	_scene.update();
 	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
 
-	for (int i = 0; i <= _rombVector.size(); i++){}
+	//for (int i = 0; i <= _rombVector.size(); i++){}
 
 	if (player->getHealth() <= 0 && !isGameOver)
 	{
@@ -195,5 +193,45 @@ void Game::updateGame()
 		}
 
 		enemySpawnTimer->stop();
+		isGameOver = true;
+	}
+	
+	if (!player->hasFocus() && !isGameOver)
+		player->setFocus();
+	//grabKeyboard();
+	//update();
+}
+
+void Game::addSceneItems()
+{
+	scene.addItem(player);
+	scene.addItem(course);
+	//scene.addItem(player->hud);
+	course->addLinesToScene(scene);
+	
+	scene.addItem(player->hud);
+	scene.addItem(player->hud->textItemScore);
+	scene.addItem(player->hud->textItemHealth);
+	scene.addItem(player->hud->textItemGAMEOVER);
+}
+
+void Game::removeSceneItems()
+{
+	scene.clear();
+}
+
+void Game::disableSceneItems()
+{
+	foreach(QGraphicsItem* gameObj, scene.items())
+	{
+		gameObj->setEnabled(false);
+	}
+}
+
+void Game::enableSceneItems()
+{
+	foreach(QGraphicsItem* gameObj, scene.items())
+	{
+		gameObj->setEnabled(true);
 	}
 }

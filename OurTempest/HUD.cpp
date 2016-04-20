@@ -1,6 +1,6 @@
 #include "HUD.h"
 
-HUD::HUD() : GameObj(180, -150, 450, 150)
+HUD::HUD() : GameObj(200, 200, 450, 150)
 {
 	//Skriver ut text.
 	//scoar = new QLCDNumber();
@@ -37,7 +37,7 @@ HUD::HUD() : GameObj(180, -150, 450, 150)
 	textItemScore->setPlainText(QString("Score: ") + QString::number(_score));
 	textItemScore->setDefaultTextColor(Qt::darkMagenta);
 	textItemScore->setFont(QFont("Courier", 20));
-	textItemScore->setPos(400, -210);
+	textItemScore->setPos(400, 450);
 	//setTextInteractionFlags(Qt::TextEditorInteraction);
 
 	//TODO: Fixa roligare fonts..
@@ -45,7 +45,7 @@ HUD::HUD() : GameObj(180, -150, 450, 150)
 	textItemHealth->setPlainText(QString("Health: ") + QString::number(_health));
 	textItemHealth->setDefaultTextColor(Qt::black);
 	textItemHealth->setFont(QFont("Courier", 20));
-	textItemHealth->setPos(550, -210);
+	textItemHealth->setPos(550, 450);
 
 	//TODO: Fixa roligare fonts..
 	textItemGAMEOVER = new QGraphicsTextItem();

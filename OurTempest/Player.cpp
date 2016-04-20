@@ -15,9 +15,10 @@ Player::Player() : MovingGameObj()
 
 	//gra
 	//QKeyEvent::isAutoRepeat = false;
-	updateTimer = new QTimer;
-	//updateTimer->setTimerType(Qt::PreciseTimer);
+	updateTimer = new QTimer(this);
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(playerUpdate()));
+	//setCacheMode(QGraphicsItem::DeviceCoordinateCache);
+	//updateTimer->setTimerType(Qt::PreciseTimer);
 	//timer->start(_gameUpdateInterval * 1000); //ms
 	//updateTimer->start(1000 / 60); //ms
 
@@ -30,8 +31,8 @@ Player::Player() : MovingGameObj()
 	timerKeyRelease->start(15);*/
 
 	//Set position
-	position.x = 100;
-	position.y = 100;
+	position.x = 400;
+	position.y = 400;
 
 	//Set values for player variables
 	velocity.x = 5;
@@ -40,14 +41,14 @@ Player::Player() : MovingGameObj()
 	velocityMax.y = 10;
 	direction.x = 0;
 	direction.y = 0; //Go downwards
-	size.x = 100;
-	size.y = 100;
+	size.x = 50;
+	size.y = 50;
 	//qDebug() << pos();
 	//qDebug() << scenePos();
 
 	//setRect(250, 350, 100, 100);
 	//TODO: make enemy in the shape of a romb
-	setRect(position.x, position.y, size.x, size.y);
+	setRect(0, 0, size.x, size.y);
 	setPos(position.x, position.y);
 
 	// Gör att fienden inte "driftar åt sidan utan förblir stationär när den skalas upp
@@ -82,7 +83,8 @@ void Player::keyPressEvent(QKeyEvent * e)
 {
 	if (controlsAllowed)
 	{
-		//grabKeyboard();
+		//if (!hasFocus())
+			//grabKeyboard();
 
 		pressedKeys += ((QKeyEvent*)e)->key();
 
@@ -128,18 +130,21 @@ void Player::keyPressEvent(QKeyEvent * e)
 			//Skapar en bullet
 			//Bullet bullet;
 			Bullet * bullet = new Bullet();
-			bullet->setPos(x(), y() + 10);
+			//bullet->setPos(x(), y());
+			bullet->setObjPos(x(), y());
 			//bulletArray.push_back(bullet);
 			//qDebug() << "Player knows you want to kill";
 			//bullet->setPos(x(), y() + 10);
 			scene()->addItem(bullet);
+			bulletAllowed = false;
 		}
 	}
 }
 
 void Player::keyReleaseEvent(QKeyEvent * e)
 {
-	//grabKeyboard();
+	//if (!hasFocus())
+		//grabKeyboard();
 
 	pressedKeys -= ((QKeyEvent*)e)->key();
 
@@ -155,6 +160,11 @@ void Player::keyReleaseEvent(QKeyEvent * e)
 	if (!pressedKeys.contains(Qt::Key_A) && !pressedKeys.contains(Qt::Key_D))
 	{
 		direction.x = 0;
+	}
+
+	if (!pressedKeys.contains(Qt::Key_Space))
+	{
+		bulletAllowed = true;
 	}
 
 	//if (updateTimer->isActive())
@@ -244,6 +254,7 @@ Player::~Player()
 void Player::playerUpdate()
 {
 	updateVelocity();
+
 	setPos(position.x, position.y);
 
 	QList <QGraphicsItem*> allItems = scene()->items();
@@ -263,7 +274,6 @@ void Player::playerUpdate()
 			}
 		}
 	}
-
 
 	//Kollision mellen E=Enemy och P=Player
 	QList <QGraphicsItem *> colliding_Items = collidingItems();

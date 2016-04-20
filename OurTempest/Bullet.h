@@ -2,13 +2,13 @@
 #define BULLET_H
 
 #pragma once
+
 #include "MovingGameObj.h"
 #include "Enemy.h"
-#include "RombEnemy.h"
 #include "Game.h"
 #include <QList>
 #include <QObject>
-#include "MovingGameObj.h"
+#include <QTimer>
 
 class Bullet : public QObject, public MovingGameObj
 {
@@ -24,6 +24,7 @@ class Bullet : public QObject, public MovingGameObj
 	private:
 		int scoreToAdd;
 		void destroyBullet();
+		QTimer * timer;
 
 	public slots:
 		void move();

@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #pragma once
+
 #include "MovingGameObj.h"
 #include "Player.h"
 #include <QList>
@@ -27,6 +28,7 @@ class Enemy : public QObject, public MovingGameObj
 	private slots:
 		void enemyMoves();
 		void makeEnemyBigger();
+		//typeid(*this) getBaseEnemyName();
 };
 
 #endif //ENEMY_H

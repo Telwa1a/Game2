@@ -32,4 +32,10 @@ GameObj::~GameObj()
 {
 }
 
+void GameObj::setObjPos(float posx, float posy)
+{
+	position.x = posx;
+	position.y = posy;
+}
+
 

@@ -5,10 +5,17 @@
 #include <stdlib.h>
 #include <QGraphicsScene>
 
+#include "Player.h"
+#include "MovingGameObj.h"
+#include "Bullet.h"
+#include "Game.h"
+
+#include <QDebug>
+
 Enemy::Enemy() : MovingGameObj()
 {
 	// set random position
-	int randomNumber = rand() % 400;
+	int randomNumber = rand() % 400;//(int)(scene()->width());//(int)(scene()->sceneRect().width());
 	position.x = randomNumber;
 	position.y = 0;
 	setPos(position.x, position.y);
@@ -28,13 +35,12 @@ Enemy::Enemy() : MovingGameObj()
 	setScale(scale);
 
 	//Set player rect
-	setRect(position.x, position.y, size.x, size.y);
+	setRect(0, 0, size.x, size.y);
 	
-	timerMove = new QTimer();
+	timerMove = new QTimer(this);
 	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
 	timerMove->start(1000/60);
-
-	timerScale = new QTimer();
+	timerScale = new QTimer(this);
 	connect(timerScale, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
 	timerScale->start(1000/60);
 }
@@ -87,6 +93,13 @@ void Enemy::enemyMoves()
 	
  	if (zValue() == 1)
 		stopMovement();
+		
+	if (position.x > scene()->width() || position.y > scene()->height() || position.x < 0 || position.y < 0)
+	{
+		scene()->removeItem(this);
+		//delete this;
+		QObject::deleteLater();
+	}
 
 	if (acceptDrops())
 		destroyEnemy();
@@ -110,7 +123,6 @@ void Enemy::destroyEnemy()
 		}
 	}*/
 
-	
 	scene()->removeItem(this);
 	delete this;
 	//QObject::deleteLater();
