@@ -3,7 +3,7 @@
 #include <QTimer>
 #include <QDebug>
 
-Bullet::Bullet()
+Bullet::Bullet() : MovingGameObj()
 {	
 	//ritade bullet
 	setRect(200, 350, 10, 30);

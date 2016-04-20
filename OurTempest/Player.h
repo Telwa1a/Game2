@@ -31,7 +31,9 @@ class Player : public QObject, public MovingGameObj
 		HUD * hud;
 
 		void addScoreToHUD();
+		void setControls(bool enabled);
 		void getSubtractedHealth();
+		int getHealth();
 		bool removeEnemy = false;
 		bool shallEnemyGo = false;
 		//void addHealthToHUD();

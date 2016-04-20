@@ -52,7 +52,7 @@ HUD::HUD() : GameObj(180, -150, 450, 150)
 	textItemGAMEOVER->setPlainText(QString("GAMEOVER"));
 	textItemGAMEOVER->setDefaultTextColor(Qt::red);
 	textItemGAMEOVER->setFont(QFont("Courier", 100));
-	textItemGAMEOVER->setPos(10, 150);
+	textItemGAMEOVER->setPos(-1000, -1000);
 
 	updateTimer = new QTimer();
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateHUD()));

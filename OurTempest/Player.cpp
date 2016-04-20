@@ -309,7 +309,7 @@ void Player::getSubtractedHealth()
 		hud->getPlayerHealth(_health);
 		if (_health == 0)
 		{
-			hud->textItemGAMEOVER;
+			hud->textItemGAMEOVER->setPos(10,200);
 		}
 	}
 
@@ -319,3 +319,17 @@ void Player::getSubtractedHealth()
 //{
 //	return std::max(lower, std::min(n, upper));
 //}
+
+int Player::getHealth()
+{
+	return _health;
+}
+
+void Player::setControls(bool enabled)
+{
+	if (enabled == true)
+		controlsAllowed = true;
+
+	if (enabled == false)
+		controlsAllowed = false;
+}

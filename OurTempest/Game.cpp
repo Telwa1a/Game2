@@ -78,6 +78,7 @@ Game::Game()
 	scene.addItem(player->hud->textItemGAMEOVER);
 
 
+
 	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv. scrap this shit
 	/*for (int i = 0; i < _rombVector.size(); i++)
 	{
@@ -178,4 +179,21 @@ void Game::updateGame()
 	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
 
 	for (int i = 0; i <= _rombVector.size(); i++){}
+
+	if (player->getHealth() <= 0 && !isGameOver)
+	{
+		scene.setFocus();
+		player->setControls(false);
+
+		QList <QGraphicsItem*> allItems = scene.items();
+		for (int i = 0; i < allItems.length(); i++)
+		{
+			MovingGameObj * moveObj;
+
+			if (moveObj = dynamic_cast<MovingGameObj*>(allItems[i]))
+				moveObj->stopMovement();
+		}
+
+		enemySpawnTimer->stop();
+	}
 }

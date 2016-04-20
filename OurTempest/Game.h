@@ -41,6 +41,7 @@ class Game : public QMainWindow
 		QTimer *updateTimer;
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
+		bool isGameOver = false;
 		
 
 		//HUD * hud;
