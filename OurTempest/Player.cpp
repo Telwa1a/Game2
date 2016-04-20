@@ -139,6 +139,12 @@ void Player::keyPressEvent(QKeyEvent * e)
 			bulletAllowed = false;
 		}
 	}
+
+	if (pressedKeys.contains(Qt::Key_Escape))
+	{
+		QApplication::quit();
+	}
+
 }
 
 void Player::keyReleaseEvent(QKeyEvent * e)
@@ -319,7 +325,7 @@ void Player::getSubtractedHealth()
 		hud->getPlayerHealth(_health);
 		if (_health == 0)
 		{
-			hud->textItemGAMEOVER->setPos(10,200);
+			hud->textItemGAMEOVER->setPos(500,400);
 		}
 	}
 

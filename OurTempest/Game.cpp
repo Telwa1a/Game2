@@ -10,7 +10,8 @@ Game::Game()
 
 	//Skapar en scen och sätter storleken
 	//QGraphicsScene *scene = new QGraphicsScene();
-	scene.setSceneRect(0, 0, 1600, 900); //DEFAULT RESOLUTION IS 1600X900 FOR THIS GAME
+	//scene.setSceneRect(0, 0, 1600, 900); //DEFAULT RESOLUTION IS 1600X900 FOR THIS GAME
+	scene.setSceneRect(0, 0, sceneWidth, sceneHeight);
 
 	//Definiera spelaren och sätter fokus på spelaren
 	player = new Player();
@@ -46,7 +47,8 @@ Game::Game()
 	//Skapar en view och storleken på den samt sätter scenen till viewn
 	//QGraphicsView *view = new QGraphicsView(&scene);
 	view.setScene(&scene);
-	view.setFixedSize(scene.width(), scene.height());
+	//view.setFixedSize(scene.width(), scene.height());
+	view.setFixedSize(sceneWidth, sceneHeight);
 	view.setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
 	//Tar bort scrollbarsen
