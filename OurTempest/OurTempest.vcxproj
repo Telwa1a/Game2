@@ -214,6 +214,10 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="G:\Dokument\My Music\Ljud\Bakgrundsmusik\Mega Man 3 (NES) Music - Select Screen.mp3" />
+    <Media Include="G:\Dokument\My Music\Ljud\Ljudeffekter\380_gunshot_single-mike-koenig.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
