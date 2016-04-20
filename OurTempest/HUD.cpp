@@ -47,6 +47,12 @@ HUD::HUD() : GameObj(180, -150, 450, 150)
 	textItemHealth->setFont(QFont("Courier", 20));
 	textItemHealth->setPos(550, -210);
 
+	//TODO: Fixa roligare fonts..
+	textItemGAMEOVER = new QGraphicsTextItem();
+	textItemGAMEOVER->setPlainText(QString("GAMEOVER"));
+	textItemGAMEOVER->setDefaultTextColor(Qt::red);
+	textItemGAMEOVER->setFont(QFont("Courier", 100));
+	textItemGAMEOVER->setPos(10, 150);
 
 	updateTimer = new QTimer();
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateHUD()));
@@ -81,4 +87,5 @@ void HUD::updateHUD()
 	//iteum->update();
 	textItemScore->setPlainText(QString("Score: ") + QString::number(_score));
 	textItemHealth->setPlainText(QString("Health: ") + QString::number(_health));
+	textItemGAMEOVER->setPlainText(QString("GAMEOVER"));
 }

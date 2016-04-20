@@ -75,6 +75,7 @@ Game::Game()
 	scene.addItem(player->hud);
 	scene.addItem(player->hud->textItemScore);
 	scene.addItem(player->hud->textItemHealth);
+	scene.addItem(player->hud->textItemGAMEOVER);
 
 
 	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv. scrap this shit

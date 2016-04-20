@@ -307,6 +307,10 @@ void Player::getSubtractedHealth()
 	{
 		_health = _health - 1;
 		hud->getPlayerHealth(_health);
+		if (_health == 0)
+		{
+			hud->textItemGAMEOVER;
+		}
 	}
 
 }
