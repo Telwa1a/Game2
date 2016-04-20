@@ -169,12 +169,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Media Include="G:\Dokument\My Music\Ljud\Bakgrundsmusik\Mega Man 3 (NES) Music - Select Screen.mp3">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="G:\Dokument\My Music\Ljud\Ljudeffekter\380_gunshot_single-mike-koenig.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-  </ItemGroup>
 </Project>

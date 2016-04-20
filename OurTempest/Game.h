@@ -8,17 +8,16 @@
 #include <QgraphicsView>
 #include <vector>
 
+#include <QSignalMapper>
+#include <QTMultimedia/QMediaPlayer>
+#include <QUrl>
+#include <QTMultimedia/QMediaContent>
+
 //#include "ui_ourtempest.h"
 #include "Player.h"
 #include "Course.h"
 #include "RombEnemy.h"
 #include "HUD.h"
-
-#include <QGraphicsScene>
-#include <QSignalMapper>
-#include <QTMultimedia/QMediaPlayer>
-#include <QUrl>
-#include <QTMultimedia/QMediaContent>
 
 class Game : public QMainWindow
 {

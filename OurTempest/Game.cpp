@@ -115,13 +115,14 @@ Game::Game()
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
 	
-
-	bgMusic = new QMediaPlayer;
 	//connect(bgMusic, SIGNAL(positionChanged(qint64)), this, SLOT(positionChanged(qint64)));
 	//bgMusic->setMedia(QMediaContent(QUrl("qrc:/Mega Man 3 (NES) Music - Select Screen.mp3")));
 	
-	bgMusic->setMedia(QUrl("qrc:/Mega Man 3 (NES) Music - Select Screen.mp3"));
+	bgMusic = new QMediaPlayer();
+	bgMusic->setMedia(QUrl("qrc:/OurTempest/242751_CronPukers.mp3"));
+	bgMusic->setVolume(100);
 	bgMusic->play();
+		
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
