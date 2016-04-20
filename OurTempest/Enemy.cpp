@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "RombEnemy.h"
+#include "Game.h"
 #include <QTimer>
 #include <stdlib.h>
 #include <QGraphicsScene>
@@ -59,10 +60,32 @@ void Enemy::makeEnemyBigger()
 
 void Enemy::enemyMoves()
 {
+	if (!removeEnemy && !shallEnemyGo)
+	{
+		//setPos(x(), y() + 5);
+		updateVelocity();
+		setPos(position.x, position.y);
+
+		QList <QGraphicsItem *> colliding_Items = collidingItems();
+		for (int i = 0, n = colliding_Items.size(); i < n; i++)
+		{
+			Player * player;
+
+
+		}
+	}
+	
 	//setPos(x(), y() + 5);
-	updateVelocity();
-	setPos(position.x, position.y);
+	//updateVelocity();
+	//setPos(position.x, position.y);
 	
  	if (zValue() == 1)
 		stopMovement();
+}
+
+int Enemy::getSubtractedHealth()
+{
+	shallEnemyGo = true;
+	removeEnemy = false;
+	return healthToSub;
 }

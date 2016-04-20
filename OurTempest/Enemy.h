@@ -2,8 +2,10 @@
 #define ENEMY_H
 
 #pragma once
-#include <QObject>
 #include "MovingGameObj.h"
+#include "Player.h"
+#include <QList>
+#include <QObject>
 
 class Enemy : public QObject, public MovingGameObj
 {
@@ -12,10 +14,14 @@ class Enemy : public QObject, public MovingGameObj
 	public:
 		Enemy();
 		~Enemy();
+		bool removeEnemy = false;
+		bool shallEnemyGo = false;
+		int getSubtractedHealth();
 
 	private:
 		QTimer * timerScale;
 		QTimer * timerMove;
+		int healthToSub;
 
 	private slots:
 		void enemyMoves();

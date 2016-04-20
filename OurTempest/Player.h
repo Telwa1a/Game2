@@ -50,7 +50,7 @@ class Player : public QObject, public MovingGameObj
 		bool controlsAllowed = true;
 
 		int _score;
-		//int _health;
+		int _health;
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);

@@ -262,4 +262,25 @@ void Player::playerUpdate()
 			}
 		}
 	}
+
+
+	//Kollision mellen E=Enemy och P=Player
+	QList <QGraphicsItem*> collisionbetweenEandP = scene()->items();
+	for (int i = 0; i < scene()->items().length(); i++)
+	{
+		if (typeid(*(collisionbetweenEandP[i])) == typeid(RombEnemy))
+		{
+			RombEnemy * getRombEnemy;
+
+			if (getRombEnemy = dynamic_cast<RombEnemy*>(collisionbetweenEandP[i]))
+			{
+				if (getRombEnemy->removeEnemy)
+				{
+					_health = _health + getRombEnemy->getSubtractedHealth();
+					hud->getPlayerHealth(_health);
+				}
+			}
+		}
+	}
+
 }

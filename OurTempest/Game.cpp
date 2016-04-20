@@ -77,7 +77,7 @@ Game::Game()
 	scene.addItem(player->hud->textItemHealth);
 
 
-	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv.
+	//TODO: gör en koll som kollar om fienden är nedanför viewn. om detta är sant så subtrahera ett liv. scrap this shit
 	/*for (int i = 0; i < _rombVector.size(); i++)
 	{
 		if ( [........] scene.height)
