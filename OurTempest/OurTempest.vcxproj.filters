@@ -127,13 +127,16 @@
     <CustomBuild Include="Enemy.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="Course.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="LLCR.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_ourtempest.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Course.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObj.h">
       <Filter>Header Files</Filter>
@@ -145,9 +148,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LLCR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MovingGameObj.h">

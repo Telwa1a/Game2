@@ -7,7 +7,7 @@
 Enemy::Enemy() : MovingGameObj()
 {
 	// set random position
-	int randomNumber = rand() % 400;
+	int randomNumber = rand() % 400;//(int)(scene()->width());//(int)(scene()->sceneRect().width());
 	position.x = randomNumber;
 	position.y = 0;
 	setPos(position.x, position.y);
@@ -27,7 +27,7 @@ Enemy::Enemy() : MovingGameObj()
 	setScale(scale);
 
 	//Set player rect
-	setRect(position.x, position.y, size.x, size.y);
+	setRect(0, 0, size.x, size.y);
 	
 	timerMove = new QTimer();
 	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));

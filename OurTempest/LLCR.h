@@ -3,23 +3,30 @@
 
 #pragma once
 
+#include <QGraphicsScene>
+#include <QGraphicsRectItem>
+#include <QRect>
+#include <QGraphicsItem>
 #include "GameObj.h"
 #include "Player.h"
-#include <QGraphicsScene>
 
-class LLCR// : public GameObj//LLCR stands for "Level Line Collision Rectangle"
+class LLCR : public QGraphicsRectItem//, public QObject //public QRect, //public GameObj//: QRect// : public GameObj//LLCR stands for "Level Line Collision Rectangle"
 {
+	//Q_OBJECT
+
 	public:
 		LLCR();
 		~LLCR();
 
-		std::vector<float> allowedDirections[4];
-
 	private:
+		QTimer updateTimer;
 		float centerX;
 		float centerY;
 		bool isTriggerEnabled;
-		void whenTriggerEnabled(Player &player);
+		bool collisionEnabled;
+		//void whenTriggerEnabled(Player &player);
+		std::vector<float> allowedDirections[4];
+
 };
 
 #endif //LLCR_H

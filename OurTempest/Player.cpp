@@ -24,8 +24,8 @@ Player::Player() : MovingGameObj()
 	timerKeyRelease->start(15);*/
 
 	//Set position
-	position.x = 100;
-	position.y = 100;
+	position.x = 400;
+	position.y = 400;
 
 	//Set values for player variables
 	velocity.x = 5;
@@ -34,14 +34,14 @@ Player::Player() : MovingGameObj()
 	velocityMax.y = 10;
 	direction.x = 0;
 	direction.y = 0; //Go downwards
-	size.x = 100;
-	size.y = 100;
+	size.x = 50;
+	size.y = 50;
 	//qDebug() << pos();
 	//qDebug() << scenePos();
 
 	//setRect(250, 350, 100, 100);
 	//TODO: make enemy in the shape of a romb
-	setRect(position.x, position.y, size.x, size.y);
+	setRect(0, 0, size.x, size.y);
 	setPos(position.x, position.y);
 
 	// Gör att fienden inte "driftar åt sidan utan förblir stationär när den skalas upp

@@ -10,9 +10,9 @@ Game::Game()
 
 	//Skapar en scen och sätter storleken
 	//QGraphicsScene *scene = new QGraphicsScene();
-	scene.setSceneRect(0, 0, 600, 450);
+	scene.setSceneRect(0, 0, 1600, 900); //DEFAULT RESOLUTION IS 1600X900 FOR THIS GAME
 
-	//Definiera spelaren och fokusera på denne
+	//Definiera spelaren och sätter fokus på spelaren
 	player = new Player();
 	player->setFlag(QGraphicsItem::ItemIsFocusable);
 	player->setFocus();
@@ -20,9 +20,8 @@ Game::Game()
 	//scene.addItem(player);
 	//scene.removeItem(player);
 
-	//Definierar och lägger till spelbanan
-	course = new Course();
-	course->addLinesToScene(scene);
+	//Definierar spelbanan
+	course = new Course(12, 24);
 
 	//Lägger till RombEnemy i scenen
 	//RombEnemy *_romb = new RombEnemy();
@@ -47,7 +46,7 @@ Game::Game()
 	//Skapar en view och storleken på den samt sätter scenen till viewn
 	//QGraphicsView *view = new QGraphicsView(&scene);
 	view.setScene(&scene);
-	view.setFixedSize(900, 900);
+	view.setFixedSize(scene.width(), scene.height());
 	view.setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
 	//Tar bort scrollbarsen
@@ -74,9 +73,6 @@ Game::Game()
 	//connect(action1, SIGNAL(triggered()), signalMapper, SLOT(map()));
 	//QObject::connect(enemySpawnTimer, SIGNAL(timeout()), this, SLOT(spawnEnemies()));
 	enemySpawnTimer->start(2000);
-
-	/*Course *_course = new Course(*_course);
-	scene->addItem(_course);*/
 	//view.setOptimizationFlag(QGraphicsView::IndirectPainting);
 
 	addSceneItems();
@@ -150,6 +146,7 @@ void Game::addSceneItems()
 {
 	scene.addItem(player);
 	scene.addItem(course);
+	course->addLinesToScene(scene);
 }
 
 void Game::removeSceneItems()
