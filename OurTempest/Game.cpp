@@ -121,7 +121,7 @@ Game::Game()
 	bgMusic = new QMediaPlayer();
 	bgMusic->setMedia(QUrl("qrc:/OurTempest/242751_CronPukers.mp3"));
 	bgMusic->setVolume(100);
-	bgMusic->play();
+	//bgMusic->play();
 		
 	view.show();
 	//view.mousePressEvent()

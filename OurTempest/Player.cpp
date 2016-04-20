@@ -55,10 +55,15 @@ Player::Player() : MovingGameObj()
 	_score = 0;
 	//_health = 4;
 	
-	gunShot = new QMediaPlayer();
-	gunShot->setMedia(QUrl("qrc:/OurTempest/Bomb-SoundBible.com-891110113.wav"));
-	gunShot->setVolume(100);
+	//gunShot = new QMediaPlayer();
+
+	//gunShot.setMedia(QUrl("qrc:/OurTempest/Bomb-SoundBible.com-891110113.wav"));
+	gunShot.setMedia(QUrl("qrc:/OurTempest/Explosion 2-SoundBible.com-1641389556.mp3"));
+	gunShot.setVolume(100);
 	//gunShot->play();
+
+	//gunShot = new QSoundEffect(QUrl::fromLocalFile("OurTempest/Bomb-SoundBible.com-891110113.wav"));
+	//gunShot
 }
 
 //TODO::Paint player just for fun
@@ -136,10 +141,75 @@ void Player::keyPressEvent(QKeyEvent * e)
 			//qDebug() << "Player knows you want to kill";
 			//bullet->setPos(x(), y() + 10);
 
-			if (gunShot->state() == QMediaPlayer::PlayingState)
-				gunShot->setPosition(0);
-			else if (gunShot->state() == QMediaPlayer::StoppedState)
-				gunShot->play();
+
+			/*if (gunShot->state() == QMediaPlayer::PlayingState)
+			{
+				gunShot->stop();
+				gunShot->
+			}
+
+			if (gunShot->state() == QMediaPlayer::StoppedState)
+				gunShot->play();*/
+
+			//gunShot.setPosition(0);
+			//gunShot.play();
+
+			/*if (gunShot.mediaStatus() == 0)
+				qDebug() << "This is the current state 0";
+
+			if (gunShot.mediaStatus() == 1)
+				qDebug() << "This is the current state 1";
+
+			if (gunShot.mediaStatus() == 2)
+				qDebug() << "This is the current state 2";
+
+			if (gunShot.mediaStatus() == 3)
+				qDebug() << "This is the current state 3";
+
+			if (gunShot.mediaStatus() == 4)
+				qDebug() << "This is the current state 4";
+
+			if (gunShot.mediaStatus() == 5)
+				qDebug() << "This is the current state 5";
+
+			if (gunShot.mediaStatus() == 6)
+				//gunShot.stop();
+				qDebug() << "This is the current state 6";
+
+			if (gunShot.mediaStatus() == 7)
+			{
+				gunShot.setPosition(0);
+				gunShot.play();
+			}
+				//qDebug() << "This is the current state 7";
+
+			if (gunShot.mediaStatus() == 8)
+				qDebug() << "This is the current state 8";*/
+
+			//if (gunShot->state() == QMediaPlayer::PlayingState)
+			//{
+			//gunShot->stop();
+			//gunShot->
+			//}
+
+			if (gunShot.state() == QMediaPlayer::PausedState || gunShot.state() == QMediaPlayer::PlayingState)
+				gunShot.stop();
+
+			if (gunShot.state() == QMediaPlayer::StoppedState)
+			{
+				gunShot.stop();
+				gunShot.play();
+			}
+
+			//qDebug << gunShot->mediaStatus() << gunShot->state();
+
+			//if (gunShot->mediaStatus() == QMediaPlayer::EndOfMedia)
+				//gunShot->setPosition(0);
+
+			/*if (gunShot->)
+				gunShot->stop();
+			if (gunShot->)*/
+				//gunShot->play();
 				
 			scene()->addItem(bullet);
 		}

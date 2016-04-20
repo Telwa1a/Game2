@@ -6,8 +6,10 @@
 #include <QKeyEvent>
 #include <QObject>
 #include <QTimer>
+#include <QDebug>
 //#include <QMediaPlayer>
 #include <QTMultimedia/QMediaPlayer>
+//#include <QTMultimedia/QSoundEffect>
 
 #include "HUD.h"
 #include "MovingGameObj.h"
@@ -43,7 +45,8 @@ class Player : public QObject, public MovingGameObj
 		//QMap<int, bool> keys;
 		QSet<int> pressedKeys;
 		//std::vector<Bullet> bulletArray;
-		QMediaPlayer * gunShot;
+		QMediaPlayer gunShot;
+		//QSoundEffect * gunShot;
 
 		bool upwardsAllowed = true;
 		bool downwardsAllowed = true;
