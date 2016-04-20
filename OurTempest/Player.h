@@ -31,6 +31,9 @@ class Player : public QObject, public MovingGameObj
 		HUD * hud;
 
 		void addScoreToHUD();
+		void getSubtractedHealth();
+		bool removeEnemy = false;
+		bool shallEnemyGo = false;
 		//void addHealthToHUD();
 		//void subractALife();
 
@@ -50,7 +53,10 @@ class Player : public QObject, public MovingGameObj
 		bool controlsAllowed = true;
 
 		int _score;
-		int _health;
+		int _health = 4;
+		//int _health(int n, int lower, int upper);
+			
+		int healthToSub;
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);

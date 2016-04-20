@@ -15,13 +15,14 @@ class Enemy : public QObject, public MovingGameObj
 		Enemy();
 		~Enemy();
 		bool removeEnemy = false;
-		bool shallEnemyGo = false;
-		int getSubtractedHealth();
+		//bool shallEnemyGo = false;
+		//int getSubtractedHealth();
 
 	private:
 		QTimer * timerScale;
 		QTimer * timerMove;
-		int healthToSub;
+		//int healthToSub;
+		void destroyEnemy();
 
 	private slots:
 		void enemyMoves();

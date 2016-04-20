@@ -11,6 +11,7 @@ Player::Player() : MovingGameObj()
 	//scene()->addItem(hud);
 	//QGraphicsScene * scenus = scene();
 	//scenus->addItem(hud);
+	//_health(4, 0, 999);
 
 	//gra
 	//QKeyEvent::isAutoRepeat = false;
@@ -265,22 +266,52 @@ void Player::playerUpdate()
 
 
 	//Kollision mellen E=Enemy och P=Player
-	QList <QGraphicsItem*> collisionbetweenEandP = scene()->items();
-	for (int i = 0; i < scene()->items().length(); i++)
+	QList <QGraphicsItem *> colliding_Items = collidingItems();
+	for (int i = 0, n = colliding_Items.size(); i < n; i++)
 	{
-		if (typeid(*(collisionbetweenEandP[i])) == typeid(RombEnemy))
-		{
-			RombEnemy * getRombEnemy;
+		Enemy * getEnemy;
 
-			if (getRombEnemy = dynamic_cast<RombEnemy*>(collisionbetweenEandP[i]))
-			{
-				if (getRombEnemy->removeEnemy)
-				{
-					_health = _health + getRombEnemy->getSubtractedHealth();
-					hud->getPlayerHealth(_health);
-				}
-			}
+		if (getEnemy = dynamic_cast<Enemy*>(colliding_Items[i]))
+		{
+			colliding_Items[i]->setZValue(1);
+			colliding_Items[i]->setAcceptDrops(true);
+			getSubtractedHealth();
+			break;
+		
+			//removeEnemy = true;
+			//colliding_Items[i]->removeEnemy = true;
 		}
+	
+
+		/*if (getRombEnemy = dynamic_cast<Enemy*>(collisionbetweenEandP[i]))
+		{
+		if (getRombEnemy->removeEnemy)
+		{
+		_health = _health + getRombEnemy->getSubtractedHealth();
+		hud->getPlayerHealth(_health);
+
+		getRombEnemy->removeEnemy = true;
+
+		}
+		}*/
+	}
+	
+}
+
+void Player::getSubtractedHealth()
+{
+	shallEnemyGo = true;
+	removeEnemy = false;
+
+	if (_health > 0 && _health < 99)
+	{
+		_health = _health - 1;
+		hud->getPlayerHealth(_health);
 	}
 
 }
+
+//int Player::_health(int n, int lower, int upper)
+//{
+//	return std::max(lower, std::min(n, upper));
+//}

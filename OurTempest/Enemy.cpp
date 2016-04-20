@@ -60,20 +60,26 @@ void Enemy::makeEnemyBigger()
 
 void Enemy::enemyMoves()
 {
-	if (!removeEnemy && !shallEnemyGo)
-	{
+	//if (!removeEnemy && !shallEnemyGo)
+	//{
 		//setPos(x(), y() + 5);
 		updateVelocity();
 		setPos(position.x, position.y);
 
-		QList <QGraphicsItem *> colliding_Items = collidingItems();
+		/*QList <QGraphicsItem *> colliding_Items = collidingItems();
 		for (int i = 0, n = colliding_Items.size(); i < n; i++)
 		{
 			Player * player;
 
+			if (player = dynamic_cast<Player*>(colliding_Items[i]))
+			{
+				colliding_Items[i]->setZValue(1);
+				healthToSub = -1;
+				removeEnemy = true;
+			}
 
-		}
-	}
+		}*/
+	//}
 	
 	//setPos(x(), y() + 5);
 	//updateVelocity();
@@ -81,11 +87,38 @@ void Enemy::enemyMoves()
 	
  	if (zValue() == 1)
 		stopMovement();
+
+	if (acceptDrops())
+		destroyEnemy();
 }
 
-int Enemy::getSubtractedHealth()
+void Enemy::destroyEnemy()
+{
+	/*QList <QGraphicsItem *> colliding_Items = collidingItems();
+	for (int i = 0, n = colliding_Items.size(); i < n; i++)
+	{
+		Player * player;
+
+		if (player = dynamic_cast<Player*>(colliding_Items[i]))
+		{
+			//scene()->removeItem(colliding_Items[i]);
+			scene()->removeItem(this);
+
+			//deleta fiende och bullet från heapen.
+			//delete colliding_Items[i];
+			delete this;
+		}
+	}*/
+
+	
+	scene()->removeItem(this);
+	delete this;
+	//QObject::deleteLater();
+}
+
+/*int Enemy::getSubtractedHealth()
 {
 	shallEnemyGo = true;
 	removeEnemy = false;
 	return healthToSub;
-}
+}*/
