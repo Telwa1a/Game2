@@ -17,6 +17,7 @@ class LLCR : public QGraphicsRectItem//, public QObject //public QRect, //public
 	public:
 		LLCR();
 		~LLCR();
+		bool hasPlayerCollided(Player *player);
 
 	private:
 		QTimer updateTimer;

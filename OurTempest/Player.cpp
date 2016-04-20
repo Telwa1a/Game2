@@ -259,4 +259,25 @@ void Player::playerUpdate()
 			}
 		}
 	}
+
+	QList <QGraphicsItem*> allCollItems = scene()->collidingItems(this, Qt::ItemSelectionMode::IntersectsItemBoundingRect);
+	for (int i = 0; i < allCollItems.length(); i++)
+	{
+		LLCR *getLLCR;
+
+		if (getLLCR = dynamic_cast<LLCR*>(allCollItems[i]))
+		{
+			//getLLCR->
+			//qDebug() << "Player knows you want to kill";
+		}
+
+		///if (getLLCR = dynamic_cast<LLCR*>(allCollItems[i]) && collidesWithItem(getLLCR))
+		//{
+
+		//}
+
+		//if (collidingItems)
+	}
+
+	//for (int i = 0; i < scene()->collidingItems())
 }

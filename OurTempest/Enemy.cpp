@@ -31,7 +31,6 @@ Enemy::Enemy() : MovingGameObj()
 	timerMove = new QTimer();
 	connect(timerMove, SIGNAL(timeout()), this, SLOT(enemyMoves()));
 	timerMove->start(1000/60);
-
 	timerScale = new QTimer();
 	connect(timerScale, SIGNAL(timeout()), this, SLOT(makeEnemyBigger()));
 	timerScale->start(1000/60);
