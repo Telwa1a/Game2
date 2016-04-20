@@ -36,7 +36,7 @@ HUD::HUD() : GameObj(0, 0, 400, 400)
 	iteum->setPlainText(QString("Score: ") + QString::number(_score));
 	iteum->setDefaultTextColor(Qt::darkMagenta);
 	iteum->setFont(QFont("Courier", 20));
-	iteum->setPos(-130, -200);
+	iteum->setPos(100, 100);
 	//setTextInteractionFlags(Qt::TextEditorInteraction);
 
 	updateTimer = new QTimer();

@@ -147,7 +147,7 @@ void Game::addSceneItems()
 {
 	scene.addItem(player);
 	scene.addItem(course);
-	scene.addItem(player->hud);
+	//scene.addItem(player->hud);
 	scene.addItem(player->hud->iteum);
 	course->addLinesToScene(scene);
 }
