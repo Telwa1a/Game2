@@ -310,6 +310,7 @@ void Game::addSceneItems()
 	scene.addItem(player->hud->textItemScore);
 	scene.addItem(player->hud->textItemHealth);
 	scene.addItem(player->hud->textItemGAMEOVER);
+	scene.addItem(player->hud->textItemInfo);
 }
 
 void Game::removeSceneItems()

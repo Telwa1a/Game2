@@ -326,6 +326,7 @@ void Player::getSubtractedHealth()
 		if (_health == 0)
 		{
 			hud->textItemGAMEOVER->setPos(500,400);
+			hud->textItemInfo->setPos(280, 550);
 		}
 	}
 

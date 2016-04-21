@@ -23,6 +23,7 @@ class HUD : public QObject, public GameObj
 		QGraphicsTextItem * textItemScore;
 		QGraphicsTextItem * textItemHealth;
 		QGraphicsTextItem * textItemGAMEOVER;
+		QGraphicsTextItem * textItemInfo;
 
 		void getPlayerScore(int score);
 		void getPlayerHealth(int health);

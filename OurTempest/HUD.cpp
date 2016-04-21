@@ -62,6 +62,12 @@ HUD::HUD() : GameObj(200, 200, 450, 150)
 	textItemGAMEOVER->setFont(QFont("Courier", 100));
 	textItemGAMEOVER->setPos(-1000, -1000);
 
+	textItemInfo = new QGraphicsTextItem();
+	textItemInfo->setPlainText(QString("Press Enter to restart.   Press Esc to exit."));
+	textItemInfo->setDefaultTextColor(Qt::red);
+	textItemInfo->setFont(QFont("Courier", 30));
+	textItemInfo->setPos(-1000, -1000);
+
 	updateTimer = new QTimer();
 	connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateHUD()));
 	updateTimer->start(1000/60);
@@ -96,4 +102,5 @@ void HUD::updateHUD()
 	textItemScore->setPlainText(QString("Score: ") + QString::number(_score));
 	textItemHealth->setPlainText(QString("Health: ") + QString::number(_health));
 	textItemGAMEOVER->setPlainText(QString("GAMEOVER"));
+	textItemInfo->setPlainText(QString("Press Enter to restart.   Press Esc to exit."));
 }
