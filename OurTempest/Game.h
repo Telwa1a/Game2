@@ -25,8 +25,8 @@ class Game : public QMainWindow
 		Game();
 		~Game();
 
-		int sceneWidth = 1600;
-		int sceneHeight = 900;
+		//int sceneWidth = 1600;
+		//int sceneHeight = 900;
 
 
 	//protected:

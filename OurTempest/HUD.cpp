@@ -1,4 +1,5 @@
 #include "HUD.h"
+#include "Game.h"
 
 HUD::HUD() : GameObj(200, 200, 450, 150)
 {
@@ -40,12 +41,19 @@ HUD::HUD() : GameObj(200, 200, 450, 150)
 	textItemScore->setPos(0, 0);
 	//setTextInteractionFlags(Qt::TextEditorInteraction);
 
+	//scene()->height();
+
+	//int widthOfScene = scene()->width() - 155;
+
+
+
 	//TODO: Fixa roligare fonts..
 	textItemHealth = new QGraphicsTextItem();
 	textItemHealth->setPlainText(QString("Health: ") + QString::number(_health));
 	textItemHealth->setDefaultTextColor(Qt::black);
 	textItemHealth->setFont(QFont("Courier", 20));
 	textItemHealth->setPos(1445, 0);
+	
 
 	//TODO: Fixa roligare fonts..
 	textItemGAMEOVER = new QGraphicsTextItem();
