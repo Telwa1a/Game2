@@ -24,6 +24,8 @@ class Game : public QMainWindow
 	public:
 		Game();
 		~Game();
+		void keyPressEvent(QKeyEvent * e);
+		void highScoreVector();
 
 		//int sceneWidth = 1600;
 		//int sceneHeight = 900;
@@ -46,6 +48,7 @@ class Game : public QMainWindow
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
 		bool isGameOver = false;
+
 		
 
 		//HUD * hud;
@@ -55,12 +58,17 @@ class Game : public QMainWindow
 		//QTimer *_frameTimer;
 		//QElapsedTimer *_frameTime;
 		//int _fps;
+		struct highScore
+		{
+			std::string name;
+			int score;
+		};
 
 		QGraphicsTextItem mainMenuTitle; //"THUMPEST - THE THUMPIEST OF THUMPS"
 		QGraphicsTextItem pauseMenuTitle; //"THE GAME IS PAUSED"
 		QGraphicsTextItem gameOverTitle; //"GAME OVER"
 		QGraphicsTextItem highScoreTitle; //"THE HIGHEST OF HIGH SCORES"
-		std::list<QGraphicsTextItem> highScoreList; //Array of size 20, filled with made-up mock names and mock scores - Highest score is 100000 points.
+		std::list<highScore> highScoreList; //Array of size 20, filled with made-up mock names and mock scores - Highest score is 100000 points.
 
 		enum GameState
 		{
@@ -71,6 +79,9 @@ class Game : public QMainWindow
 			HighScoreState
 		};
 
+		GameState state;
+
+	
 		void addSceneItems(); //Adds all the neccessary items to the scene when switching over from main menu to ingame
 		void removeSceneItems(); //Removes all scene items when switching over from ingame/game over to main menu/high score
 		void disableSceneItems(); //Disables all the items in the scene when switching over from ingame to pause menu/game over

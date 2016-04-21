@@ -6,7 +6,7 @@
 Game::Game()
 {
 	//Definiera enum
-	GameState state = IngameState;
+	state = IngameState;
 
 	//Skapar en scen och sätter storleken
 	//QGraphicsScene *scene = new QGraphicsScene();
@@ -118,7 +118,8 @@ Game::Game()
 
 	/*Course *_course = new Course(*_course);
 	scene->addItem(_course);*/
-	addSceneItems();
+	if( state == IngameState)
+		addSceneItems();
 
 	view.show();
 	//view.mousePressEvent()
@@ -179,29 +180,123 @@ void Game::updateGame()
 	_view.centerOn(_player->getPos().x + _view.rect().width() / 5, _player->getPos().y);*/
 
 	//for (int i = 0; i <= _rombVector.size(); i++){}
-
-	if (player->getHealth() <= 0 && !isGameOver)
+	if (state == IngameState)
 	{
-		scene.setFocus();
-		player->setControls(false);
-
-		QList <QGraphicsItem*> allItems = scene.items();
-		for (int i = 0; i < allItems.length(); i++)
+		if (player->getHealth() <= 0 && !isGameOver)
 		{
-			MovingGameObj * moveObj;
+			scene.setFocus();
+			player->setControls(false);
 
-			if (moveObj = dynamic_cast<MovingGameObj*>(allItems[i]))
-				moveObj->stopMovement();
+			QList <QGraphicsItem*> allItems = scene.items();
+			for (int i = 0; i < allItems.length(); i++)
+			{
+				MovingGameObj * moveObj;
+
+				if (moveObj = dynamic_cast<MovingGameObj*>(allItems[i]))
+					moveObj->stopMovement();
+			}
+
+			enemySpawnTimer->stop();
+			isGameOver = true;
+			state = GameOverState;
+
 		}
 
-		enemySpawnTimer->stop();
-		isGameOver = true;
+
+
+		if (!player->hasFocus() && !isGameOver)
+			player->setFocus();
+		//grabKeyboard();
+		//update();
 	}
 	
-	if (!player->hasFocus() && !isGameOver)
-		player->setFocus();
-	//grabKeyboard();
-	//update();
+}
+
+void Game::keyPressEvent(QKeyEvent * e)
+{
+	if (state == GameOverState)
+	{
+		//TODO: lägg till någon typ av timeout så att den väntar någon sekund innan den går över till HighScoreState.
+		state = HighScoreState;
+	}
+	if (state == HighScoreState)
+	{
+		//if (e->key() == Qt::Key_Enter)
+		
+	}
+}
+
+void Game::highScoreVector()
+{
+	std::vector <highScore>allHighScores(20);
+
+	allHighScores[0].name = "AA";
+	allHighScores[0].score = 1;
+	allHighScores[1].name = "BB";
+	allHighScores[1].score = 2;
+	allHighScores[2].name = "CC";
+	allHighScores[2].score = 3;
+	allHighScores[3].name = "DD";
+	allHighScores[3].score = 4;
+	allHighScores[4].name = "EE";
+	allHighScores[4].score = 5;
+	allHighScores[5].name = "FF";
+	allHighScores[5].score = 6;
+	allHighScores[6].name = "GG";
+	allHighScores[6].score = 7;
+	allHighScores[7].name = "HH";
+	allHighScores[7].score = 8;
+	allHighScores[8].name = "II";
+	allHighScores[8].score = 9;
+	allHighScores[9].name = "JJ";
+	allHighScores[9].score = 10;
+	allHighScores[10].name = "KK";
+	allHighScores[10].score = 11;
+	allHighScores[11].name = "LL";
+	allHighScores[11].score = 12;
+	allHighScores[12].name = "MM";
+	allHighScores[12].score = 13;
+	allHighScores[13].name = "NN";
+	allHighScores[13].score = 14;
+	allHighScores[14].name = "OO";
+	allHighScores[14].score = 15;
+	allHighScores[15].name = "PP";
+	allHighScores[15].score = 16;
+	allHighScores[16].name = "QQ";
+	allHighScores[16].score = 17;
+	allHighScores[17].name = "RR";
+	allHighScores[17].score = 18;
+	allHighScores[18].name = "SS";
+	allHighScores[18].score = 19;
+	allHighScores[19].name = "TT";
+	allHighScores[19].score = 20;
+
+
+	for (int i = 0; i < allHighScores.size(); i++)
+	{
+		highScoreList.push_back(allHighScores[i]);
+	}
+
+	
+
+	/*
+	highScore hS1;
+	hS1.name = "FUCKOFF";
+	hS1.score = 9001;
+
+	highScore hS2;
+	
+	*/
+
+	
+
+	//highScoreList.assign("K", 10);//, ("Therese", 20), ("Robin", 30);
+	//highScoreList.push_back();
+	//highScoreList.assign("Therese", "20");
+	//highScoreList.assign("Robin", "30");
+
+
+
 }
 
 void Game::addSceneItems()
