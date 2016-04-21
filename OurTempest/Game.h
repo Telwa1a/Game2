@@ -17,6 +17,22 @@
 #include <QGraphicsScene>
 #include <QSignalMapper>
 
+class highScore
+{
+	public:
+		highScore(std::string &_name, int _score) : score(_score), name(_name){}
+		highScore(){ name = ""; score = 0; };
+		~highScore(){};
+
+		std::string name;
+		int score;
+		//friend bool operator < (const highScore &A, const highScore &B);
+		inline bool operator < (const highScore &A) const
+		{
+			return score < A.score;
+		}
+};
+
 class Game : public QMainWindow
 {
 	Q_OBJECT
@@ -58,11 +74,21 @@ class Game : public QMainWindow
 		//QTimer *_frameTimer;
 		//QElapsedTimer *_frameTime;
 		//int _fps;
-		struct highScore
+
+		/*class highScore
 		{
-			std::string name;
-			int score;
+			highScore(std::string &_name, int _score) : score(_score), name(_name){}
+
+			public:
+				std::string name;
+				int score;
+				highScore& operator < (highScore);
 		};
+
+		highScore& highScore::operator < (highScore h)
+		{
+			return A.score < B.score;
+		}*/
 
 		QGraphicsTextItem mainMenuTitle; //"THUMPEST - THE THUMPIEST OF THUMPS"
 		QGraphicsTextItem pauseMenuTitle; //"THE GAME IS PAUSED"
@@ -81,7 +107,11 @@ class Game : public QMainWindow
 
 		GameState state;
 
-	
+		//bool cmpScore(const highScore &A, const highScore &B);
+		//{
+		//	return A.score < B.score;
+		//}
+
 		void addSceneItems(); //Adds all the neccessary items to the scene when switching over from main menu to ingame
 		void removeSceneItems(); //Removes all scene items when switching over from ingame/game over to main menu/high score
 		void disableSceneItems(); //Disables all the items in the scene when switching over from ingame to pause menu/game over
@@ -93,6 +123,16 @@ class Game : public QMainWindow
 		void updateGame();
 		//void updateFrameTime();
 };
+
+//inline bool operator < (const highScore &A, const highScore &B)
+//{
+//	return A.score < B.score;
+//}
+
+//highScore& highScore::operator < (highScore h)
+//{
+//	return score < h.score;
+//}
 
 #endif //GAME_H
 

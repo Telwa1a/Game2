@@ -277,7 +277,7 @@ void Game::highScoreVector()
 		highScoreList.push_back(allHighScores[i]);
 	}
 
-	
+	highScoreList.sort();
 
 	/*
 	highScore hS1;
@@ -332,3 +332,9 @@ void Game::enableSceneItems()
 		gameObj->setEnabled(true);
 	}
 }
+
+//bool Game::cmpScore(const highScore &A, const highScore &B)
+//{
+//	return A.score < B.score;
+//}
+
