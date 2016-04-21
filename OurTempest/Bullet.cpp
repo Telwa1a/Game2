@@ -14,8 +14,8 @@ Bullet::Bullet(float xpos, float ypos) : MovingGameObj()
 	velocity.y = 7;
 	velocityMax.x = 10;
 	velocityMax.y = 10;
-	direction.x = 0;
-	direction.y = -1; //Go downwards
+	//direction.x = 0;
+	//direction.y = -1; //Go downwards
 	size.x = 10;
 	size.y = 30;
 	//qDebug() << pos();
@@ -25,6 +25,8 @@ Bullet::Bullet(float xpos, float ypos) : MovingGameObj()
 	//TODO: make enemy in the shape of a romb
 	setRect(0, 0, size.x, size.y);
 	setPos(position.x, position.y);
+	//setTransformOriginPoint((x() + (size.x / 2)), (y() + (size.y / 2)));
+	//setRotation(45);
 
 	//connect
 	timer = new QTimer(this);

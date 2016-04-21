@@ -10,7 +10,7 @@
 #include "GameObj.h"
 #include "Player.h"
 
-class LLCR : public QGraphicsRectItem//, public QObject //public QRect, //public GameObj//: QRect// : public GameObj//LLCR stands for "Level Line Collision Rectangle"
+class LLCR : public QObject, public GameObj//, public QObject //public QRect, //public GameObj//: QRect// : public GameObj//LLCR stands for "Level Line Collision Rectangle"
 {
 	//Q_OBJECT
 
@@ -31,7 +31,6 @@ class LLCR : public QGraphicsRectItem//, public QObject //public QRect, //public
 		//void whenTriggerEnabled(Player &player);
 		std::vector<float> allowedDirections[4];
 		Player * attachedPlayer; //ADDRESS TO THE PLAYER ATTACHED TO THE CURRENT LLCR
-
 };
 
 #endif //LLCR_H

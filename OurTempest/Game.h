@@ -68,6 +68,7 @@ class Game : public QMainWindow
 		void removeSceneItems(); //Removes all scene items when switching over from ingame/game over to main menu/high score
 		void disableSceneItems(); //Disables all the items in the scene when switching over from ingame to pause menu/game over
 		void enableSceneItems(); //Enables all the items in the scene when switching over from pause menu to ingame
+		bool SetFocusOnPlayerOnce = true;
 		//void 
 
 	private slots:

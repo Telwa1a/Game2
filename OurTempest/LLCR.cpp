@@ -3,9 +3,9 @@
 #include <QPainter>
 #include <QStyleOption>
 
-LLCR::LLCR()// : GameObj()
+LLCR::LLCR() : GameObj()
 {
-	setPos(0, 0);
+	//setPos(0, 0);
 }
 
 LLCR::~LLCR()

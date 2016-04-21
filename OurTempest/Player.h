@@ -4,9 +4,13 @@
 #pragma once
 
 #include <QKeyEvent>
+#include <QMouseEvent>
+#include <QGraphicsSceneEvent>
 #include <QObject>
 #include <QTimer>
+#include <QVector2D>
 
+#include "qmath.h"
 #include "HUD.h"
 #include "MovingGameObj.h"
 
@@ -23,14 +27,15 @@ class Player : public QObject, public MovingGameObj
 		
 		void keyPressEvent(QKeyEvent *e);
 		void keyReleaseEvent(QKeyEvent *e);
-		void mousePressEvent(QMouseEvent *e);
-		void mouseReleaseEvent(QMouseEvent *e);
+		void mousePressEvent(QGraphicsSceneMouseEvent *e);
+		void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
 		//void timerEvent(QTimerEvent *);
 		//void playerUpdate(QKeyEvent * e);
 
 		HUD * hud;
 
 		void addScoreToHUD();
+		void activateUpdate();
 
 	private:
 		//bool isKeyPressed = false;
@@ -48,6 +53,8 @@ class Player : public QObject, public MovingGameObj
 		bool controlsAllowed = true;
 
 		int _score;
+
+		void shootBullet();
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);

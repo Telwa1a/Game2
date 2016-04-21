@@ -141,3 +141,18 @@ void MovingGameObj::stopMovement()
 	direction.x = 0;
 	direction.y = 0;
 }
+
+void MovingGameObj::setDirection(float x, float y)
+{
+	direction.x = x;
+	direction.y = y;
+}
+
+void MovingGameObj::setVelocity(float x, float y)
+{
+	velocity.x = x;
+	velocity.y = y;
+
+	if (velocity.x > velocityMax.x)
+		velocityMax.x = velocity.x;
+}

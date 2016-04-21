@@ -9,6 +9,7 @@
 class GameObj : public QGraphicsRectItem
 {
 	protected:
+
 		struct Vector2
 		{
 			float x;
@@ -17,7 +18,14 @@ class GameObj : public QGraphicsRectItem
 		Vector2 position;
 		Vector2 size;
 
+		template <typename T>
+		T Lerp(T& val1, T& val2, float u)
+		{
+			return (1 - u) * val1 + u * val2;
+		}
+
 	public:
+
 		GameObj();
 		GameObj(const float xpos, const float ypos, const float width, const float height);
 		GameObj(const Vector2 _pos, const Vector2 _size);

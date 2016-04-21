@@ -14,7 +14,8 @@ Game::Game()
 
 	//Definiera spelaren och sätter fokus på spelaren
 	player = new Player();
-	player->setFlag(QGraphicsItem::ItemIsFocusable);
+	player->setFlag(QGraphicsItem::ItemIsFocusable, true);
+	//player->setFlag(QGraphicsItem::ItemIsSelectable, true);
 	player->setFocus();
 	//Player * player = new Player();
 	//scene.addItem(player);
@@ -42,6 +43,7 @@ Game::Game()
 	//view.setFocusPolicy(Qt::NoFocus); 
 	//scene.setFocusItem(player);
 	//setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
+	setWindowState(Qt::WindowActive);
 
 	//Skapar en view och storleken på den samt sätter scenen till viewn
 	//QGraphicsView *view = new QGraphicsView(&scene);
@@ -52,6 +54,9 @@ Game::Game()
 	//Tar bort scrollbarsen
 	view.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	view.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+	//Se till att alltid skaffa musens position
+	view.setMouseTracking(true);
 
 	/*QTimer * timer = new QTimer();
 	connect(timer, SIGNAL(timeout()), this, SLOT(enemyMoves()));
@@ -76,7 +81,7 @@ Game::Game()
 	//view.setOptimizationFlag(QGraphicsView::IndirectPainting);
 
 	addSceneItems();
-	
+
 	view.show();
 	//view.mousePressEvent()
 	//ui.setupUi(this);
@@ -137,8 +142,20 @@ void Game::updateGame()
 
 	for (int i = 0; i <= rombVector.size(); i++){}
 
-	if (!player->hasFocus())
+	if (!player->hasFocus() && SetFocusOnPlayerOnce)
+	{
 		player->setFocus();
+		player->activateUpdate();
+		SetFocusOnPlayerOnce = false;
+	}
+
+	//if (QApplication::activeWindow() == 0)
+	//{
+		//SET STATE TO PAUSE STATE
+	//}
+		//this->setWindowState(Qt::WindowActive);
+		//player->setFocus();
+
 	//grabKeyboard();
 	//update();
 }
