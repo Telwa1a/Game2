@@ -61,7 +61,7 @@ Player::Player() : MovingGameObj()
 
 	//gunShot.setMedia(QUrl("qrc:/OurTempest/Bomb-SoundBible.com-891110113.wav"));
 	gunShot.setMedia(QUrl("qrc:/OurTempest/Western Ricochet-SoundBible.com-1725886901.mp3"));
-	gunShot.setVolume(20);
+	gunShot.setVolume(40);
 	//gunShot->play();
 
 	//gunShot = new QSoundEffect(QUrl::fromLocalFile("OurTempest/Bomb-SoundBible.com-891110113.wav"));
@@ -137,7 +137,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 		{
 			//Skapar en bullet
 			//Bullet bullet;
-			Bullet * bullet = new Bullet((float)x(), (float)y());
+			//Bullet * bullet = new Bullet((float)x(), (float)y());
 			//bullet->setPos(x(), y());
 			//bullet->setObjPos(x(), y());
 			//bulletArray.push_back(bullet);
@@ -195,14 +195,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 			//gunShot->
 			//}
 
-			if (gunShot.state() == QMediaPlayer::PausedState || gunShot.state() == QMediaPlayer::PlayingState)
-				gunShot.stop();
-
-			if (gunShot.state() == QMediaPlayer::StoppedState)
-			{
-				gunShot.stop();
-				gunShot.play();
-			}
+			shootBullet();
 
 			//qDebug << gunShot->mediaStatus() << gunShot->state();
 
@@ -214,7 +207,7 @@ void Player::keyPressEvent(QKeyEvent * e)
 			if (gunShot->)*/
 				//gunShot->play();
 				
-			scene()->addItem(bullet);
+			//scene()->addItem(bullet);
 			bulletAllowed = false;
 		}
 	}
@@ -265,7 +258,7 @@ void Player::mousePressEvent(QGraphicsSceneMouseEvent * e)
 {
 	//grabMouse();
 
-	if (e->button() == Qt::LeftButton && bulletAllowed)
+	/*if (e->button() == Qt::LeftButton && bulletAllowed)
 	{
 		Bullet * bullet = new Bullet((float)x(), (float)y());
 		//bullet->setPos(x(), y());
@@ -275,7 +268,7 @@ void Player::mousePressEvent(QGraphicsSceneMouseEvent * e)
 		//bullet->setPos(x(), y() + 10);
 		scene()->addItem(bullet);
 		bulletAllowed = false;
-	}
+	}*/
 
 	//grabMouse();
 	//hasFocus();
@@ -284,10 +277,10 @@ void Player::mousePressEvent(QGraphicsSceneMouseEvent * e)
 
 void Player::mouseReleaseEvent(QGraphicsSceneMouseEvent * e)
 {
-	if (e->MouseButtonPress && !bulletAllowed)
+	/*if (e->MouseButtonPress && !bulletAllowed)
 	{
 		bulletAllowed = true;
-	}
+	}*/
 	//hasFocus();
 }
 
@@ -417,18 +410,23 @@ void Player::playerUpdate()
 		
 			//removeEnemy = true;
 			//colliding_Items[i]->removeEnemy = true;
+		}
 
+		LLCR * getLLCR;
+
+		if (getLLCR = dynamic_cast<LLCR*>(colliding_Items[i]))
+		{
 			if (!getLLCR->hasBeenCollidedWith)
 			{
 				//break;
 				getLLCR->setCurrentLLCR(this);
 			}
-
-			//if (getLLCR->hasBeenCollidedWith)
-			//{
-				//break;
-			//}
 		}
+
+		//if (getLLCR->hasBeenCollidedWith)
+		//{
+		//break;
+		//}
 
 		/*if (getRombEnemy = dynamic_cast<Enemy*>(collisionbetweenEandP[i]))
 		{
@@ -531,6 +529,14 @@ void Player::shootBullet()
 	scene()->addItem(bullet);
 	//QGraphicsWid
 	//float y = scene()->sceneRect().y();
+	if (gunShot.state() == QMediaPlayer::PausedState || gunShot.state() == QMediaPlayer::PlayingState)
+		gunShot.stop();
+
+	if (gunShot.state() == QMediaPlayer::StoppedState)
+	{
+		gunShot.stop();
+		gunShot.play();
+	}
 }
 
 void Player::activateUpdate()
