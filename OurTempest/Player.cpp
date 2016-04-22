@@ -58,8 +58,8 @@ Player::Player() : MovingGameObj()
 	//gunShot = new QMediaPlayer();
 
 	//gunShot.setMedia(QUrl("qrc:/OurTempest/Bomb-SoundBible.com-891110113.wav"));
-	gunShot.setMedia(QUrl("qrc:/OurTempest/Explosion 2-SoundBible.com-1641389556.mp3"));
-	gunShot.setVolume(100);
+	gunShot.setMedia(QUrl("qrc:/OurTempest/Western Ricochet-SoundBible.com-1725886901.mp3"));
+	gunShot.setVolume(20);
 	//gunShot->play();
 
 	//gunShot = new QSoundEffect(QUrl::fromLocalFile("OurTempest/Bomb-SoundBible.com-891110113.wav"));
