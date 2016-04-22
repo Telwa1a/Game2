@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="OurTempest">
+    <qresource prefix="/OurTempest">
+        <file>242751_CronPukers.mp3</file>
+        <file>Western Ricochet-SoundBible.com-1725886901.mp3</file>
     </qresource>
 </RCC>

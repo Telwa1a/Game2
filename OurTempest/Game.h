@@ -8,14 +8,16 @@
 #include <QgraphicsView>
 #include <vector>
 
+#include <QSignalMapper>
+#include <QTMultimedia/QMediaPlayer>
+#include <QUrl>
+#include <QTMultimedia/QMediaContent>
+
 //#include "ui_ourtempest.h"
 #include "Player.h"
 #include "Course.h"
 #include "RombEnemy.h"
 #include "HUD.h"
-
-#include <QGraphicsScene>
-#include <QSignalMapper>
 
 class highScore
 {
@@ -49,6 +51,7 @@ class Game : public QMainWindow
 
 	//protected:
 		
+
 	private:
 		//Ui::OurTempestClass ui;
 		//Player *_player;
@@ -63,10 +66,11 @@ class Game : public QMainWindow
 		QTimer *updateTimer;
 		QTimer *enemySpawnTimer;
 		QSignalMapper *signalMapper;
+
 		bool isGameOver = false;
 
+		QMediaPlayer *bgMusic;
 		
-
 		//HUD * hud;
 		//const float _physicsUpdateInterval; //seconds / update
 		//const float _gameUpdateInterval; //seconds / update
