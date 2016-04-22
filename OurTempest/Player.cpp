@@ -65,7 +65,16 @@ Player::Player() : MovingGameObj()
 	//gunShot->play();
 
 	//gunShot = new QSoundEffect(QUrl::fromLocalFile("OurTempest/Bomb-SoundBible.com-891110113.wav"));
-	//gunShot
+
+	//grabMouse();
+	//grabKeyboard();
+	//qDebug() << acceptedMouseButtons();
+	//setAcceptHoverEvents(true);
+	//setFlag(QGraphicsItem::ItemIsMovable, true);
+
+	//if (!updateTimer->isActive())
+		//updateTimer->start(1000 / 60);
+
 }
 
 //TODO::Paint player just for fun
@@ -76,17 +85,6 @@ Player::Player() : MovingGameObj()
 	
 }
 */
-
-void Player::mousePressEvent(QMouseEvent *e)
-{
-	//grabMouse();
-	//hasFocus();
-}
-
-void Player::mouseReleaseEvent(QMouseEvent *e)
-{
-	//hasFocus();
-}
 
 void Player::keyPressEvent(QKeyEvent * e)
 {
@@ -99,8 +97,9 @@ void Player::keyPressEvent(QKeyEvent * e)
 
 		//isKeyPressed = true;
 
-		if (!updateTimer->isActive())
-			updateTimer->start(1000 / 60);
+		//if (!updateTimer->isActive())
+			//updateTimer->start(1000 / 60);
+
 		//if (updateTimer->)
 		//keys[e->key()] = true; 
 		//QGraphicsRectItem::keyPressEvent(e);
@@ -138,9 +137,9 @@ void Player::keyPressEvent(QKeyEvent * e)
 		{
 			//Skapar en bullet
 			//Bullet bullet;
-			Bullet * bullet = new Bullet();
+			Bullet * bullet = new Bullet((float)x(), (float)y());
 			//bullet->setPos(x(), y());
-			bullet->setObjPos(x(), y());
+			//bullet->setObjPos(x(), y());
 			//bulletArray.push_back(bullet);
 			//qDebug() << "Player knows you want to kill";
 			//bullet->setPos(x(), y() + 10);
@@ -248,13 +247,48 @@ void Player::keyReleaseEvent(QKeyEvent * e)
 		direction.x = 0;
 	}
 
-	if (!pressedKeys.contains(Qt::Key_Space))
+	if (pressedKeys.contains(Qt::Key_Space) && bulletAllowed)
+	{
+		bulletAllowed = false;
+	}
+
+	if (!pressedKeys.contains(Qt::Key_Space) && !bulletAllowed)
 	{
 		bulletAllowed = true;
 	}
 
 	//if (updateTimer->isActive())
 		//updateTimer->stop();
+}
+
+void Player::mousePressEvent(QGraphicsSceneMouseEvent * e)
+{
+	//grabMouse();
+
+	if (e->button() == Qt::LeftButton && bulletAllowed)
+	{
+		Bullet * bullet = new Bullet((float)x(), (float)y());
+		//bullet->setPos(x(), y());
+		//bullet->setObjPos(x(), y());
+		//bulletArray.push_back(bullet);
+		//qDebug() << "Player knows you want to kill";
+		//bullet->setPos(x(), y() + 10);
+		scene()->addItem(bullet);
+		bulletAllowed = false;
+	}
+
+	//grabMouse();
+	//hasFocus();
+	//e->accept();
+}
+
+void Player::mouseReleaseEvent(QGraphicsSceneMouseEvent * e)
+{
+	if (e->MouseButtonPress && !bulletAllowed)
+	{
+		bulletAllowed = true;
+	}
+	//hasFocus();
 }
 
 /*void Player::timerEvent(QTimerEvent *)
@@ -339,6 +373,12 @@ Player::~Player()
 */
 void Player::playerUpdate()
 {
+	if (!hasFocus())
+	{
+		setFocus();
+		shootBullet();
+	}
+
 	updateVelocity();
 
 	setPos(position.x, position.y);
@@ -356,6 +396,7 @@ void Player::playerUpdate()
 				{
 					_score = _score + getBullet->getAddedScore();
 					hud->getPlayerScore(_score);
+					break;
 				}
 			}
 		}
@@ -376,8 +417,18 @@ void Player::playerUpdate()
 		
 			//removeEnemy = true;
 			//colliding_Items[i]->removeEnemy = true;
+
+			if (!getLLCR->hasBeenCollidedWith)
+			{
+				//break;
+				getLLCR->setCurrentLLCR(this);
+			}
+
+			//if (getLLCR->hasBeenCollidedWith)
+			//{
+				//break;
+			//}
 		}
-	
 
 		/*if (getRombEnemy = dynamic_cast<Enemy*>(collisionbetweenEandP[i]))
 		{
@@ -429,4 +480,60 @@ void Player::setControls(bool enabled)
 
 	if (enabled == false)
 		controlsAllowed = false;
+}
+
+void Player::shootBullet()
+{
+	/*Bullet * bullet = new Bullet((float)x() + (size.x / 2.5), (float)y() + (size.y / 2.5));
+
+	QPoint localMousePos = QCursor::pos();
+	QPoint bulletPos(x(), y());
+
+	QVector2D delta(localMousePos - bulletPos);
+
+	/*float vectorLength = qSqrt(delta.x() * delta.x() + delta.y() * delta.y());
+	bullet->setDirection(delta.x(), delta.y());
+
+	if (delta.x() != 0 && delta.y() != 0)
+		delta.normalize();
+
+	qreal angle = qAtan2(delta.y(), delta.x());
+
+	bullet->setDirection(delta.x(), delta.y());
+	bullet->setRotation(angle);*/
+
+	Bullet * bullet = new Bullet((float)x() + (size.x / 2.5), (float)y() + (size.y / 2.5));
+
+	QPoint localMousePos = QCursor::pos();
+	QPoint worldMousePos(
+		localMousePos.x() + scene()->sceneRect().x() - (scene()->sceneRect().width() / 2),
+		localMousePos.y() + scene()->sceneRect().y() - (scene()->sceneRect().height() / 2)
+		//localMousePos.x() + scene()-> - (scene()->sceneRect().width() / 2),
+		//localMousePos.y() + scene()->sceneRect().y() - (scene()->sceneRect().height() / 2)
+		//localMousePos.x() - scene()->sceneRect().x() + (scene()->sceneRect().width() / 2),
+		//localMousePos.y() - scene()->sceneRect().y() + (scene()->sceneRect().height() / 2)
+		);
+	//worldMousePos.setX();
+	QPoint bulletPos(x(), y());
+	//QPoint bulletPos(worldMousePos.x() - x(), worldMousePos.y() - y());
+
+	QVector2D delta(localMousePos - bulletPos);
+	//QVector2D delta(worldMousePos - bulletPos);
+
+	if (delta.x() != 0 && delta.y() != 0)
+		delta.normalize();
+
+	qreal angle = qAtan2(delta.y(), delta.x());
+
+	bullet->setDirection(delta.x(), delta.y());
+	bullet->setRotation(angle);
+
+	scene()->addItem(bullet);
+	//QGraphicsWid
+	//float y = scene()->sceneRect().y();
+}
+
+void Player::activateUpdate()
+{
+	updateTimer->start(1000 / 60);
 }

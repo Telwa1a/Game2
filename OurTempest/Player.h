@@ -4,13 +4,17 @@
 #pragma once
 
 #include <QKeyEvent>
+#include <QMouseEvent>
+#include <QGraphicsSceneEvent>
 #include <QObject>
 #include <QTimer>
 #include <QDebug>
 //#include <QMediaPlayer>
 #include <QTMultimedia/QMediaPlayer>
 //#include <QTMultimedia/QSoundEffect>
+#include <QVector2D>
 
+#include "qmath.h"
 #include "HUD.h"
 #include "MovingGameObj.h"
 
@@ -27,8 +31,8 @@ class Player : public QObject, public MovingGameObj
 		
 		void keyPressEvent(QKeyEvent *e);
 		void keyReleaseEvent(QKeyEvent *e);
-		void mousePressEvent(QMouseEvent *e);
-		void mouseReleaseEvent(QMouseEvent *e);
+		void mousePressEvent(QGraphicsSceneMouseEvent *e);
+		void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
 		//void timerEvent(QTimerEvent *);
 		//void playerUpdate(QKeyEvent * e);
 
@@ -42,6 +46,7 @@ class Player : public QObject, public MovingGameObj
 		bool shallEnemyGo = false;
 		//void addHealthToHUD();
 		//void subractALife();
+		void activateUpdate();
 
 	private:
 		//bool isKeyPressed = false;
@@ -65,6 +70,8 @@ class Player : public QObject, public MovingGameObj
 		//int _health(int n, int lower, int upper);
 			
 		int healthToSub;
+
+		void shootBullet();
 
 	private slots:
 		//void keyPressEvent(QKeyEvent *e);

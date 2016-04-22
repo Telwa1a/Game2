@@ -15,7 +15,7 @@ class Bullet : public QObject, public MovingGameObj
 	Q_OBJECT
 
 	public:
-		Bullet();
+		Bullet(float xpos, float ypos);
 		~Bullet();
 		bool removeBullet = false;
 		bool shallBulletGo = false;
@@ -23,7 +23,7 @@ class Bullet : public QObject, public MovingGameObj
 
 	private:
 		int scoreToAdd;
-		void destroyBullet();
+		void destroyBullet(bool goThroughCollisionObjects);
 		QTimer * timer;
 
 	public slots:
